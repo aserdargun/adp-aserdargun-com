@@ -1,0 +1,39 @@
+{
+  "name": "adp-aserdargun-com",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5301 --strictPort",
+    "preview": "vite preview --host 127.0.0.1 --port 4301 --strictPort",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "tsc --noEmit && vite build && node scripts/release.mjs && node scripts/release.mjs --verify",
+    "validate": "npm run lint && npm test && npm run build",
+    "format": "prettier --write src tests *.ts *.json *.html docs/*.md",
+    "format:check": "prettier --check src tests *.ts *.json *.html docs/*.md",
+    "predev": "node scripts/sync-docs.mjs",
+    "prebuild": "node scripts/sync-docs.mjs",
+    "verify:artifact": "node scripts/release.mjs --verify"
+  },
+  "dependencies": {
+    "@fontsource/geist": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "lucide-react": "0.468.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "prettier": "^3.8.1",
+    "typescript": "5.9.3",
+    "vite": "8.2.2",
+    "vitest": "4.1.11"
+  }
+}
