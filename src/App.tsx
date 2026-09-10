@@ -495,6 +495,13 @@ function AppContent({
           <div>
             <LabControlButton
               action={playing ? "pause" : "play"}
+              aria-label={
+                playing
+                  ? t("Pause", "Duraklat")
+                  : run && !state?.complete
+                    ? t("Play", "Oynat")
+                    : t("Start simulation", "Simülasyonu başlat")
+              }
               capabilities={manifest.capabilities}
               locale={lang}
               className="primary"
