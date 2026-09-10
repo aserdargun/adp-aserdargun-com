@@ -1,3 +1,6 @@
+import {LabShell,LabControlButton} from '@aserdargun/lab-ui';
+import '@aserdargun/lab-ui/styles.css';
+import {manifest,experiments,initialRoute} from './ils/catalog';
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   SlidersHorizontal,
@@ -76,13 +79,12 @@ function AppContent({
   setLang: (lang: Locale) => void;
 }) {
   const t = useT();
-  const [config, setConfig] = useState<AdaptationConfig>(() =>
-    structuredClone(defaultConfig),
-  );
+  const [route] = useState(() => initialRoute(location.search));
+  const [config, setConfig] = useState<AdaptationConfig>(route.config);
   const [tab, setTab] = useState<Tab>(() =>
     tabs.includes(location.hash.slice(1) as Tab)
       ? (location.hash.slice(1) as Tab)
-      : "adapt",
+      : route.tab,
   );
   const [restored] = useState(readRuns);
   const [run, setRun] = useState<ExperimentRun | null>(null),
@@ -92,8 +94,8 @@ function AppContent({
   const nextId = useRef(
     Math.max(0, ...runs.map((r) => +r.id.split("-").at(-1)!)) + 1,
   );
-  const [lesson, setLesson] = useState<number | null>(null),
-    [scenario, setScenario] = useState("domain"),
+  const [lesson, setLesson] = useState<number | null>(route.lesson ? 0 : null),
+    [scenario, setScenario] = useState(route.scenario),
     [notice, setNotice] = useState<Text | null>(null);
   const message = (en: string, tr: string): Text => ({ en, tr });
   const state = useMemo(
@@ -491,7 +493,7 @@ function AppContent({
         </nav>
         <div className="toolbar">
           <div>
-            <button
+            <LabControlButton action={playing ? "pause" : "play"} capabilities={manifest.capabilities} locale={lang}
               className="primary"
               onClick={start}
               disabled={Boolean(state?.trainingComplete && !state?.complete)}
@@ -502,15 +504,15 @@ function AppContent({
                 : run && !state?.complete
                   ? t("Play", "Oynat")
                   : t("Start simulation", "Simülasyonu başlat")}
-            </button>
-            <button onClick={step} disabled={state?.trainingComplete}>
+            </LabControlButton>
+            <LabControlButton action="step" capabilities={manifest.capabilities} locale={lang} onClick={step} disabled={state?.trainingComplete}>
               <StepForward size={16} />
               {t("Step", "Adım")}
-            </button>
-            <button onClick={reset}>
+            </LabControlButton>
+            <LabControlButton action="reset" capabilities={manifest.capabilities} locale={lang} onClick={reset}>
               <RotateCcw size={15} />
               {t("Reset", "Sıfırla")}
-            </button>
+            </LabControlButton>
             {!state?.trainingComplete && (
               <button onClick={finishTraining}>
                 {t("Complete training", "Eğitimi tamamla")}
@@ -723,6 +725,7 @@ function AppContent({
             </section>
           </>
         )}
+        <LabShell manifest={manifest} experiment={experiments.find(e => e.id === scenario)!} locale={lang} />
         <details className="panel assumptions">
           <summary>
             {t(

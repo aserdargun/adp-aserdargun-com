@@ -1,0 +1,30 @@
+[
+  {
+    "id": "concept:model-adaptation",
+    "label": {
+      "en": "Model adaptation",
+      "tr": "Model uyarlama"
+    }
+  },
+  {
+    "id": "concept:low-rank-adaptation",
+    "label": {
+      "en": "Low-rank adaptation",
+      "tr": "Düşük rank uyarlama"
+    }
+  },
+  {
+    "id": "concept:training-memory",
+    "label": {
+      "en": "Training memory",
+      "tr": "Eğitim belleği"
+    }
+  },
+  {
+    "id": "concept:generalization",
+    "label": {
+      "en": "Generalization",
+      "tr": "Genelleme"
+    }
+  }
+]

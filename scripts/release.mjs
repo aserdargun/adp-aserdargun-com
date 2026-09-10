@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
@@ -19,6 +19,7 @@ const sha =
       return "uncommitted";
     }
   })();
+if (!process.argv.includes("--verify")) copyFileSync(join(root,"lab.manifest.json"), join(dist,"lab.manifest.json"));
 const html = readFileSync(join(dist, "index.html"), "utf8");
 const paths = [...html.matchAll(/(?:src|href)="(\/assets\/[^\"]+)"/g)].map(
   (m) => m[1],
@@ -38,6 +39,7 @@ for (const file of [
   "staticwebapp.config.json",
   "educational-model.md",
   "favicon.svg",
+  "lab.manifest.json",
 ])
   if (!existsSync(join(dist, file))) throw new Error(`Missing ${file}`);
 const config = JSON.parse(

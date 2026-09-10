@@ -67,3 +67,7 @@ The run format is versioned `adp-core-1`. Real training traces, framework adapte
 ## Türkçe
 
 ADP, model uyarlama kararlarını görünür kılan bir eğitim laboratuvarıdır. Full FT, LoRA ve QLoRA arasındaki parametre ve bellek farklarını hesaplar; veri temizleme, eğitim döngüsü, aşırı uyum, başlangıç karşılaştırması ve değerlendirme kapısını birleştirir. Tüm arayüz EN/TR destekler. Simülasyon sonuçları gerçek benchmark değildir. `npm run dev` ile yerelde çalışır; `main` dalı GitHub Actions üzerinden Azure Free ortamına yayımlanır. Uygulama `adp.aserdargun.com` adresinden de erişilebilir; yayın iş akışı DNS yönetmez.
+
+## ILS v0.1
+
+Canonical content-addressed packages in `vendor/` supply the shared evidence shell and existing playback controls. The manifest maps five authored scenarios plus the real custom-configuration state; the lesson adapter reuses all ten current chapters. `?scenario=…` applies an allowlisted preset, `?lesson=adaptation-101` opens the guide. The custom route starts from defaults, not a transferred configuration. Unsupported `ils` payloads are ignored. Related links are semantic navigation only. Parameter calculations, memory estimates, user inputs and synthetic learning outputs remain distinct; simulation and scientific content stay application-owned.

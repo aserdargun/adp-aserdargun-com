@@ -1,0 +1,344 @@
+[
+  {
+    "schemaVersion": "0.1",
+    "id": "domain",
+    "title": {
+      "en": "01 Domain QA",
+      "tr": "01 Alan soru-cevap"
+    },
+    "config": {
+      "scenarioId": "domain"
+    },
+    "guidingQuestion": {
+      "en": "What changes when a base model is adapted to a task?",
+      "tr": "Temel model bir göreve uyarlandığında ne değişir?"
+    },
+    "concepts": [
+      "concept:model-adaptation",
+      "concept:low-rank-adaptation",
+      "concept:training-memory",
+      "concept:generalization"
+    ],
+    "learningObjectives": [
+      {
+        "en": "What changes when a base model is adapted to a task?",
+        "tr": "Temel model bir göreve uyarlandığında ne değişir?"
+      }
+    ],
+    "observations": [
+      {
+        "id": "tradeoffs",
+        "label": {
+          "en": "Mechanisms and trade-offs",
+          "tr": "Mekanizmalar ve ödünleşimler"
+        },
+        "explanation": {
+          "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
+          "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
+        },
+        "evidenceRefs": [
+          "configuration",
+          "parameters",
+          "memory",
+          "learning"
+        ]
+      }
+    ],
+    "assumptionRefs": [
+      "generic-profile",
+      "synthetic-learning",
+      "memory-estimate"
+    ],
+    "evidenceRefs": [
+      "configuration",
+      "parameters",
+      "memory",
+      "learning"
+    ]
+  },
+  {
+    "schemaVersion": "0.1",
+    "id": "quality",
+    "title": {
+      "en": "02 Data quality",
+      "tr": "02 Veri kalitesi"
+    },
+    "config": {
+      "scenarioId": "quality"
+    },
+    "guidingQuestion": {
+      "en": "Can more noisy data be worse than less clean data?",
+      "tr": "Daha fazla gürültülü veri daha az temiz veriden kötü olabilir mi?"
+    },
+    "concepts": [
+      "concept:model-adaptation",
+      "concept:low-rank-adaptation",
+      "concept:training-memory",
+      "concept:generalization"
+    ],
+    "learningObjectives": [
+      {
+        "en": "Can more noisy data be worse than less clean data?",
+        "tr": "Daha fazla gürültülü veri daha az temiz veriden kötü olabilir mi?"
+      }
+    ],
+    "observations": [
+      {
+        "id": "tradeoffs",
+        "label": {
+          "en": "Mechanisms and trade-offs",
+          "tr": "Mekanizmalar ve ödünleşimler"
+        },
+        "explanation": {
+          "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
+          "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
+        },
+        "evidenceRefs": [
+          "configuration",
+          "parameters",
+          "memory",
+          "learning"
+        ]
+      }
+    ],
+    "assumptionRefs": [
+      "generic-profile",
+      "synthetic-learning",
+      "memory-estimate"
+    ],
+    "evidenceRefs": [
+      "configuration",
+      "parameters",
+      "memory",
+      "learning"
+    ]
+  },
+  {
+    "schemaVersion": "0.1",
+    "id": "overfit",
+    "title": {
+      "en": "03 Overfitting",
+      "tr": "03 Aşırı uyum"
+    },
+    "config": {
+      "scenarioId": "overfit"
+    },
+    "guidingQuestion": {
+      "en": "Can falling training loss hide poor generalization?",
+      "tr": "Düşen eğitim kaybı zayıf genellemeyi gizleyebilir mi?"
+    },
+    "concepts": [
+      "concept:model-adaptation",
+      "concept:low-rank-adaptation",
+      "concept:training-memory",
+      "concept:generalization"
+    ],
+    "learningObjectives": [
+      {
+        "en": "Can falling training loss hide poor generalization?",
+        "tr": "Düşen eğitim kaybı zayıf genellemeyi gizleyebilir mi?"
+      }
+    ],
+    "observations": [
+      {
+        "id": "tradeoffs",
+        "label": {
+          "en": "Mechanisms and trade-offs",
+          "tr": "Mekanizmalar ve ödünleşimler"
+        },
+        "explanation": {
+          "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
+          "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
+        },
+        "evidenceRefs": [
+          "configuration",
+          "parameters",
+          "memory",
+          "learning"
+        ]
+      }
+    ],
+    "assumptionRefs": [
+      "generic-profile",
+      "synthetic-learning",
+      "memory-estimate"
+    ],
+    "evidenceRefs": [
+      "configuration",
+      "parameters",
+      "memory",
+      "learning"
+    ]
+  },
+  {
+    "schemaVersion": "0.1",
+    "id": "memory",
+    "title": {
+      "en": "04 Memory constraint",
+      "tr": "04 Bellek sınırı"
+    },
+    "config": {
+      "scenarioId": "memory"
+    },
+    "guidingQuestion": {
+      "en": "Why is weight storage only part of training memory?",
+      "tr": "Ağırlık depolaması neden eğitim belleğinin yalnız bir bölümüdür?"
+    },
+    "concepts": [
+      "concept:model-adaptation",
+      "concept:low-rank-adaptation",
+      "concept:training-memory",
+      "concept:generalization"
+    ],
+    "learningObjectives": [
+      {
+        "en": "Why is weight storage only part of training memory?",
+        "tr": "Ağırlık depolaması neden eğitim belleğinin yalnız bir bölümüdür?"
+      }
+    ],
+    "observations": [
+      {
+        "id": "tradeoffs",
+        "label": {
+          "en": "Mechanisms and trade-offs",
+          "tr": "Mekanizmalar ve ödünleşimler"
+        },
+        "explanation": {
+          "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
+          "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
+        },
+        "evidenceRefs": [
+          "configuration",
+          "parameters",
+          "memory",
+          "learning"
+        ]
+      }
+    ],
+    "assumptionRefs": [
+      "generic-profile",
+      "synthetic-learning",
+      "memory-estimate"
+    ],
+    "evidenceRefs": [
+      "configuration",
+      "parameters",
+      "memory",
+      "learning"
+    ]
+  },
+  {
+    "schemaVersion": "0.1",
+    "id": "rank",
+    "title": {
+      "en": "05 Rank explorer",
+      "tr": "05 Rank keşfi"
+    },
+    "config": {
+      "scenarioId": "rank"
+    },
+    "guidingQuestion": {
+      "en": "How does rank change the trainable parameter budget?",
+      "tr": "Rank eğitilebilir parametre bütçesini nasıl değiştirir?"
+    },
+    "concepts": [
+      "concept:model-adaptation",
+      "concept:low-rank-adaptation",
+      "concept:training-memory",
+      "concept:generalization"
+    ],
+    "learningObjectives": [
+      {
+        "en": "How does rank change the trainable parameter budget?",
+        "tr": "Rank eğitilebilir parametre bütçesini nasıl değiştirir?"
+      }
+    ],
+    "observations": [
+      {
+        "id": "tradeoffs",
+        "label": {
+          "en": "Mechanisms and trade-offs",
+          "tr": "Mekanizmalar ve ödünleşimler"
+        },
+        "explanation": {
+          "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
+          "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
+        },
+        "evidenceRefs": [
+          "configuration",
+          "parameters",
+          "memory",
+          "learning"
+        ]
+      }
+    ],
+    "assumptionRefs": [
+      "generic-profile",
+      "synthetic-learning",
+      "memory-estimate"
+    ],
+    "evidenceRefs": [
+      "configuration",
+      "parameters",
+      "memory",
+      "learning"
+    ]
+  },
+  {
+    "schemaVersion": "0.1",
+    "id": "custom",
+    "title": {
+      "en": "Custom experiment",
+      "tr": "Özel deney"
+    },
+    "config": {
+      "scenarioId": "custom"
+    },
+    "guidingQuestion": {
+      "en": "How do your current choices change this synthetic experiment?",
+      "tr": "Mevcut seçimleriniz bu sentetik deneyi nasıl değiştiriyor?"
+    },
+    "concepts": [
+      "concept:model-adaptation",
+      "concept:low-rank-adaptation",
+      "concept:training-memory",
+      "concept:generalization"
+    ],
+    "learningObjectives": [
+      {
+        "en": "How do your current choices change this synthetic experiment?",
+        "tr": "Mevcut seçimleriniz bu sentetik deneyi nasıl değiştiriyor?"
+      }
+    ],
+    "observations": [
+      {
+        "id": "tradeoffs",
+        "label": {
+          "en": "Mechanisms and trade-offs",
+          "tr": "Mekanizmalar ve ödünleşimler"
+        },
+        "explanation": {
+          "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
+          "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
+        },
+        "evidenceRefs": [
+          "configuration",
+          "parameters",
+          "memory",
+          "learning"
+        ]
+      }
+    ],
+    "assumptionRefs": [
+      "generic-profile",
+      "synthetic-learning",
+      "memory-estimate"
+    ],
+    "evidenceRefs": [
+      "configuration",
+      "parameters",
+      "memory",
+      "learning"
+    ]
+  }
+]

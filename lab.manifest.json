@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "0.1",
+  "id": "adp",
+  "code": "adp",
+  "name": "Model Adaptation Laboratory",
+  "canonicalUrl": "https://adp.aserdargun.com/",
+  "type": "interactive-lab",
+  "parentApp": "usl",
+  "status": "live",
+  "tagline": {
+    "en": "Change what learns. Evaluate what changed.",
+    "tr": "Öğreneni değiştirin. Değişimi değerlendirin."
+  },
+  "guidingQuestion": {
+    "en": "What changes when a base model is adapted to a task?",
+    "tr": "Temel model bir göreve uyarlandığında ne değişir?"
+  },
+  "concepts": [
+    "concept:model-adaptation",
+    "concept:low-rank-adaptation",
+    "concept:training-memory",
+    "concept:generalization"
+  ],
+  "capabilities": {
+    "play": true,
+    "pause": true,
+    "step": true,
+    "reset": true,
+    "compare": true,
+    "guidedLesson": true,
+    "experiments": true,
+    "assumptions": true,
+    "evidence": true
+  },
+  "experiments": [
+    {
+      "id": "domain",
+      "title": {
+        "en": "01 Domain QA",
+        "tr": "01 Alan soru-cevap"
+      },
+      "route": "/?scenario=domain"
+    },
+    {
+      "id": "quality",
+      "title": {
+        "en": "02 Data quality",
+        "tr": "02 Veri kalitesi"
+      },
+      "route": "/?scenario=quality"
+    },
+    {
+      "id": "overfit",
+      "title": {
+        "en": "03 Overfitting",
+        "tr": "03 Aşırı uyum"
+      },
+      "route": "/?scenario=overfit"
+    },
+    {
+      "id": "memory",
+      "title": {
+        "en": "04 Memory constraint",
+        "tr": "04 Bellek sınırı"
+      },
+      "route": "/?scenario=memory"
+    },
+    {
+      "id": "rank",
+      "title": {
+        "en": "05 Rank explorer",
+        "tr": "05 Rank keşfi"
+      },
+      "route": "/?scenario=rank"
+    },
+    {
+      "id": "custom",
+      "title": {
+        "en": "Custom experiment",
+        "tr": "Özel deney"
+      },
+      "route": "/?scenario=custom"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "adaptation-101",
+      "title": {
+        "en": "Adaptation 101",
+        "tr": "Uyarlama 101"
+      },
+      "route": "/?lesson=adaptation-101"
+    }
+  ],
+  "evidencePolicy": {
+    "summary": {
+      "en": "Calculated parameters, estimated memory and synthetic learning results remain distinct. No real model is trained. Source verification does not verify simulator numbers.",
+      "tr": "Hesaplanmış parametreler, tahmini bellek ve sentetik öğrenme sonuçları ayrıdır. Gerçek model eğitilmez. Kaynak doğrulaması simülatör sayılarını doğrulamaz."
+    },
+    "allowedKinds": [
+      "user-input",
+      "calculated",
+      "estimated",
+      "simulated"
+    ]
+  },
+  "assumptions": [
+    {
+      "id": "generic-profile",
+      "title": {
+        "en": "Generic model profile",
+        "tr": "Genel model profili"
+      },
+      "description": {
+        "en": "Rounded educational dimensions and parameter budgets are not an actual model architecture. No model is trained and no checkpoint is produced.",
+        "tr": "Yuvarlatılmış eğitim boyutları ve parametre bütçeleri gerçek model mimarisi değildir. Model eğitilmez, kontrol noktası üretilmez."
+      }
+    },
+    {
+      "id": "synthetic-learning",
+      "title": {
+        "en": "Authored learning model",
+        "tr": "Kurgulanmış öğrenme modeli"
+      },
+      "description": {
+        "en": "Curves and evaluation scores are deterministic synthetic teaching functions. Rank and model size do not predict quality; compute index is not time, FLOPs or money.",
+        "tr": "Eğri ve değerlendirme skorları belirlenimci sentetik eğitim fonksiyonlarıdır. Rank ve model boyutu kaliteyi tahmin etmez; hesap indeksi zaman, FLOP veya para değildir."
+      }
+    },
+    {
+      "id": "memory-estimate",
+      "title": {
+        "en": "Conditional memory model",
+        "tr": "Koşullu bellek modeli"
+      },
+      "description": {
+        "en": "Activation and workspace coefficients are assumptions. The model excludes sharding, offload and fragmentation; inspect the full existing model specification.",
+        "tr": "Aktivasyon ve çalışma alanı katsayıları varsayımdır. Model parçalama, dış belleğe taşıma ve bellek parçalanmasını içermez; mevcut tam model tanımını inceleyin."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "0.1",
+      "id": "configuration",
+      "kind": "user-input",
+      "verificationStatus": "not-applicable",
+      "label": {
+        "en": "Current experiment configuration",
+        "tr": "Mevcut deney yapılandırması"
+      },
+      "notes": {
+        "en": "Authored presets or edits define the active configuration. Configuration changes invalidate the prior synthetic run.",
+        "tr": "Kurgulanmış önayarlar veya düzenlemeler etkin yapılandırmayı belirler. Yapılandırma değişimi önceki sentetik yürütmeyi geçersiz kılar."
+      },
+      "assumptionRefs": [
+        "generic-profile",
+        "synthetic-learning",
+        "memory-estimate"
+      ]
+    },
+    {
+      "schemaVersion": "0.1",
+      "id": "parameters",
+      "kind": "calculated",
+      "verificationStatus": "not-applicable",
+      "label": {
+        "en": "Trainable parameter counts",
+        "tr": "Eğitilebilir parametre sayıları"
+      },
+      "notes": {
+        "en": "Counts follow selected projection dimensions and rank, not a measured model artifact.",
+        "tr": "Sayılar seçili izdüşüm boyutları ve ranktan hesaplanır; ölçülmüş model çıktısı değildir."
+      },
+      "assumptionRefs": [
+        "generic-profile"
+      ],
+      "calculatedFrom": [
+        "configuration"
+      ]
+    },
+    {
+      "schemaVersion": "0.1",
+      "id": "memory",
+      "kind": "estimated",
+      "verificationStatus": "not-applicable",
+      "label": {
+        "en": "Training memory",
+        "tr": "Eğitim belleği"
+      },
+      "notes": {
+        "en": "Conditional estimates include documented precision and workspace assumptions. They do not certify device fit.",
+        "tr": "Koşullu tahminler belgelenmiş hassasiyet ve çalışma alanı varsayımlarını içerir. Cihaza sığmayı belgelemez."
+      },
+      "assumptionRefs": [
+        "generic-profile",
+        "memory-estimate"
+      ]
+    },
+    {
+      "schemaVersion": "0.1",
+      "id": "learning",
+      "kind": "simulated",
+      "verificationStatus": "not-applicable",
+      "label": {
+        "en": "Training curves and evaluation",
+        "tr": "Eğitim eğrileri ve değerlendirme"
+      },
+      "notes": {
+        "en": "Synthetic curves, loss and evaluation gates illustrate mechanisms. They are not benchmarks or measured generalization.",
+        "tr": "Sentetik eğri, kayıp ve değerlendirme kapıları mekanizmayı açıklar. Benchmark veya ölçülmüş genelleme değildir."
+      },
+      "assumptionRefs": [
+        "synthetic-learning"
+      ]
+    }
+  ],
+  "related": {
+    "theory": [
+      {
+        "id": "usl",
+        "label": {
+          "en": "USL",
+          "tr": "USL"
+        },
+        "url": "https://usl.aserdargun.com/",
+        "localizedUrls": {
+          "en": "https://usl.aserdargun.com/?lang=en",
+          "tr": "https://usl.aserdargun.com/?lang=tr"
+        }
+      },
+      {
+        "id": "evl",
+        "label": {
+          "en": "EVL",
+          "tr": "EVL"
+        },
+        "url": "https://evl.aserdargun.com/",
+        "localizedUrls": {
+          "en": "https://evl.aserdargun.com/?lang=en",
+          "tr": "https://evl.aserdargun.com/?lang=tr"
+        }
+      }
+    ],
+    "labs": [
+      {
+        "id": "dcl",
+        "label": {
+          "en": "DCL",
+          "tr": "DCL"
+        },
+        "url": "https://dcl.aserdargun.com/",
+        "localizedUrls": {
+          "en": "https://dcl.aserdargun.com/?lang=en",
+          "tr": "https://dcl.aserdargun.com/?lang=tr"
+        }
+      },
+      {
+        "id": "tfl",
+        "label": {
+          "en": "TFL",
+          "tr": "TFL"
+        },
+        "url": "https://tfl.aserdargun.com/",
+        "localizedUrls": {
+          "en": "https://tfl.aserdargun.com/?lang=en",
+          "tr": "https://tfl.aserdargun.com/?lang=tr"
+        }
+      },
+      {
+        "id": "gex",
+        "label": {
+          "en": "GEX",
+          "tr": "GEX"
+        },
+        "url": "https://gex.aserdargun.com/",
+        "localizedUrls": {
+          "en": "https://gex.aserdargun.com/?lang=en",
+          "tr": "https://gex.aserdargun.com/?lang=tr"
+        }
+      }
+    ]
+  }
+}
