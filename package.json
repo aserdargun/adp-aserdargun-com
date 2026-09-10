@@ -25,8 +25,8 @@
     "lucide-react": "0.468.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "@aserdargun/lab-core": "file:vendor/aserdargun-lab-core-0.1.0-e5cb8baabeebc68c.tgz",
-    "@aserdargun/lab-ui": "file:vendor/aserdargun-lab-ui-0.1.0-ad3719af737d3971.tgz"
+    "@aserdargun/lab-core": "file:vendor/aserdargun-lab-core-0.2.0-fb38c750c230ff3d.tgz",
+    "@aserdargun/lab-ui": "file:vendor/aserdargun-lab-ui-0.2.0-5a573640012a6472.tgz"
   },
   "devDependencies": {
     "@types/node": "22.20.1",
