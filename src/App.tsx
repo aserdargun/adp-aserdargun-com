@@ -1,6 +1,6 @@
-import {LabShell,LabControlButton} from '@aserdargun/lab-ui';
-import '@aserdargun/lab-ui/styles.css';
-import {manifest,experiments,initialRoute} from './ils/catalog';
+import { LabShell, LabControlButton } from "@aserdargun/lab-ui";
+import "@aserdargun/lab-ui/styles.css";
+import { manifest, experiments, initialRoute } from "./ils/catalog";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   SlidersHorizontal,
@@ -493,7 +493,10 @@ function AppContent({
         </nav>
         <div className="toolbar">
           <div>
-            <LabControlButton action={playing ? "pause" : "play"} capabilities={manifest.capabilities} locale={lang}
+            <LabControlButton
+              action={playing ? "pause" : "play"}
+              capabilities={manifest.capabilities}
+              locale={lang}
               className="primary"
               onClick={start}
               disabled={Boolean(state?.trainingComplete && !state?.complete)}
@@ -505,11 +508,22 @@ function AppContent({
                   ? t("Play", "Oynat")
                   : t("Start simulation", "Simülasyonu başlat")}
             </LabControlButton>
-            <LabControlButton action="step" capabilities={manifest.capabilities} locale={lang} onClick={step} disabled={state?.trainingComplete}>
+            <LabControlButton
+              action="step"
+              capabilities={manifest.capabilities}
+              locale={lang}
+              onClick={step}
+              disabled={state?.trainingComplete}
+            >
               <StepForward size={16} />
               {t("Step", "Adım")}
             </LabControlButton>
-            <LabControlButton action="reset" capabilities={manifest.capabilities} locale={lang} onClick={reset}>
+            <LabControlButton
+              action="reset"
+              capabilities={manifest.capabilities}
+              locale={lang}
+              onClick={reset}
+            >
               <RotateCcw size={15} />
               {t("Reset", "Sıfırla")}
             </LabControlButton>
@@ -725,7 +739,11 @@ function AppContent({
             </section>
           </>
         )}
-        <LabShell manifest={manifest} experiment={experiments.find(e => e.id === scenario)!} locale={lang} />
+        <LabShell
+          manifest={manifest}
+          experiment={experiments.find((e) => e.id === scenario)!}
+          locale={lang}
+        />
         <details className="panel assumptions">
           <summary>
             {t(

@@ -97,12 +97,7 @@
       "en": "Calculated parameters, estimated memory and synthetic learning results remain distinct. No real model is trained. Source verification does not verify simulator numbers.",
       "tr": "Hesaplanmış parametreler, tahmini bellek ve sentetik öğrenme sonuçları ayrıdır. Gerçek model eğitilmez. Kaynak doğrulaması simülatör sayılarını doğrulamaz."
     },
-    "allowedKinds": [
-      "user-input",
-      "calculated",
-      "estimated",
-      "simulated"
-    ]
+    "allowedKinds": ["user-input", "calculated", "estimated", "simulated"]
   },
   "assumptions": [
     {
@@ -172,12 +167,8 @@
         "en": "Counts follow selected projection dimensions and rank, not a measured model artifact.",
         "tr": "Sayılar seçili izdüşüm boyutları ve ranktan hesaplanır; ölçülmüş model çıktısı değildir."
       },
-      "assumptionRefs": [
-        "generic-profile"
-      ],
-      "calculatedFrom": [
-        "configuration"
-      ]
+      "assumptionRefs": ["generic-profile"],
+      "calculatedFrom": ["configuration"]
     },
     {
       "schemaVersion": "0.1",
@@ -192,10 +183,7 @@
         "en": "Conditional estimates include documented precision and workspace assumptions. They do not certify device fit.",
         "tr": "Koşullu tahminler belgelenmiş hassasiyet ve çalışma alanı varsayımlarını içerir. Cihaza sığmayı belgelemez."
       },
-      "assumptionRefs": [
-        "generic-profile",
-        "memory-estimate"
-      ]
+      "assumptionRefs": ["generic-profile", "memory-estimate"]
     },
     {
       "schemaVersion": "0.1",
@@ -210,9 +198,7 @@
         "en": "Synthetic curves, loss and evaluation gates illustrate mechanisms. They are not benchmarks or measured generalization.",
         "tr": "Sentetik eğri, kayıp ve değerlendirme kapıları mekanizmayı açıklar. Benchmark veya ölçülmüş genelleme değildir."
       },
-      "assumptionRefs": [
-        "synthetic-learning"
-      ]
+      "assumptionRefs": ["synthetic-learning"]
     }
   ],
   "related": {

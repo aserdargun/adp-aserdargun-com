@@ -36,12 +36,7 @@
           "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
           "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
         },
-        "evidenceRefs": [
-          "configuration",
-          "parameters",
-          "memory",
-          "learning"
-        ]
+        "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
       }
     ],
     "assumptionRefs": [
@@ -49,12 +44,7 @@
       "synthetic-learning",
       "memory-estimate"
     ],
-    "evidenceRefs": [
-      "configuration",
-      "parameters",
-      "memory",
-      "learning"
-    ]
+    "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
   },
   {
     "schemaVersion": "0.1",
@@ -93,12 +83,7 @@
           "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
           "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
         },
-        "evidenceRefs": [
-          "configuration",
-          "parameters",
-          "memory",
-          "learning"
-        ]
+        "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
       }
     ],
     "assumptionRefs": [
@@ -106,12 +91,7 @@
       "synthetic-learning",
       "memory-estimate"
     ],
-    "evidenceRefs": [
-      "configuration",
-      "parameters",
-      "memory",
-      "learning"
-    ]
+    "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
   },
   {
     "schemaVersion": "0.1",
@@ -150,12 +130,7 @@
           "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
           "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
         },
-        "evidenceRefs": [
-          "configuration",
-          "parameters",
-          "memory",
-          "learning"
-        ]
+        "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
       }
     ],
     "assumptionRefs": [
@@ -163,12 +138,7 @@
       "synthetic-learning",
       "memory-estimate"
     ],
-    "evidenceRefs": [
-      "configuration",
-      "parameters",
-      "memory",
-      "learning"
-    ]
+    "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
   },
   {
     "schemaVersion": "0.1",
@@ -207,12 +177,7 @@
           "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
           "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
         },
-        "evidenceRefs": [
-          "configuration",
-          "parameters",
-          "memory",
-          "learning"
-        ]
+        "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
       }
     ],
     "assumptionRefs": [
@@ -220,12 +185,7 @@
       "synthetic-learning",
       "memory-estimate"
     ],
-    "evidenceRefs": [
-      "configuration",
-      "parameters",
-      "memory",
-      "learning"
-    ]
+    "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
   },
   {
     "schemaVersion": "0.1",
@@ -264,12 +224,7 @@
           "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
           "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
         },
-        "evidenceRefs": [
-          "configuration",
-          "parameters",
-          "memory",
-          "learning"
-        ]
+        "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
       }
     ],
     "assumptionRefs": [
@@ -277,12 +232,7 @@
       "synthetic-learning",
       "memory-estimate"
     ],
-    "evidenceRefs": [
-      "configuration",
-      "parameters",
-      "memory",
-      "learning"
-    ]
+    "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
   },
   {
     "schemaVersion": "0.1",
@@ -321,12 +271,7 @@
           "en": "Inspect parameter counts, memory assumptions and held-out synthetic behavior separately.",
           "tr": "Parametre sayılarını, bellek varsayımlarını ve ayrılmış sentetik davranışı ayrı inceleyin."
         },
-        "evidenceRefs": [
-          "configuration",
-          "parameters",
-          "memory",
-          "learning"
-        ]
+        "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
       }
     ],
     "assumptionRefs": [
@@ -334,11 +279,6 @@
       "synthetic-learning",
       "memory-estimate"
     ],
-    "evidenceRefs": [
-      "configuration",
-      "parameters",
-      "memory",
-      "learning"
-    ]
+    "evidenceRefs": ["configuration", "parameters", "memory", "learning"]
   }
 ]
