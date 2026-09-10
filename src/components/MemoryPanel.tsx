@@ -4,7 +4,7 @@ import type { AdaptationConfig } from "../core/types";
 import { memory } from "../core/memory";
 import { getModel } from "../core/models";
 import { LocaleContext, SectionTitle, bytes, External, Note, useT } from "./ui";
-import { links } from "../integrations/links";
+import { deploymentLink } from "../ils/handoff";
 export const memoryNames = {
   weights: ["Base weights", "Temel ağırlıklar"],
   quantization: ["Quantization metadata", "Kuantizasyon meta verisi"],
@@ -21,9 +21,11 @@ export const memoryNames = {
 export function MemoryPanel({
   config: c,
   expanded = false,
+  experimentId = "custom",
 }: {
   config: AdaptationConfig;
   expanded?: boolean;
+  experimentId?: string;
 }) {
   const m = memory(c),
     t = useT(),
@@ -132,7 +134,7 @@ export function MemoryPanel({
         <small>
           {t("Where can this workload run?", "Bu iş yükü nerede çalışabilir?")}
         </small>
-        <External href={links(lang).dcl}>
+        <External href={deploymentLink(c, experimentId, lang)}>
           {t("Explore deployment → DCL", "Dağıtımı keşfet → DCL")}
         </External>
       </div>

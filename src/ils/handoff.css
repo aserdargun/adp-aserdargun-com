@@ -1,0 +1,35 @@
+.semantic-handoff {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #647b83;
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+  background: #172125;
+  color: #e8efed;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.semantic-handoff p {
+  margin: 0.4rem 0;
+}
+.semantic-handoff a,
+.semantic-handoff button {
+  display: inline-block;
+  margin: 0.35rem 0.75rem 0.35rem 0;
+  color: #c0e4d4;
+  text-decoration: underline;
+  min-height: 36px;
+}
+.semantic-handoff button {
+  background: transparent;
+  border: 1px solid #647b83;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+}
+.semantic-handoff a:focus-visible,
+.semantic-handoff button:focus-visible {
+  outline: 3px solid #85b9d5;
+  outline-offset: 3px;
+}

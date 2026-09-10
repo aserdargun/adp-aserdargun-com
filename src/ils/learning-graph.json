@@ -1,0 +1,5810 @@
+{
+  "applications": [
+    {
+      "appId": "adp",
+      "canonicalUrl": "https://adp.aserdargun.com/",
+      "catalogSource": "manifest",
+      "evidence": [
+        {
+          "assumptionRefs": [
+            "generic-profile",
+            "synthetic-learning",
+            "memory-estimate"
+          ],
+          "id": "configuration",
+          "kind": "user-input",
+          "label": {
+            "en": "Current experiment configuration",
+            "tr": "Mevcut deney yapılandırması"
+          },
+          "notes": {
+            "en": "Authored presets or edits define the active configuration. Configuration changes invalidate the prior synthetic run.",
+            "tr": "Kurgulanmış önayarlar veya düzenlemeler etkin yapılandırmayı belirler. Yapılandırma değişimi önceki sentetik yürütmeyi geçersiz kılar."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        },
+        {
+          "assumptionRefs": ["generic-profile"],
+          "calculatedFrom": ["configuration"],
+          "id": "parameters",
+          "kind": "calculated",
+          "label": {
+            "en": "Trainable parameter counts",
+            "tr": "Eğitilebilir parametre sayıları"
+          },
+          "notes": {
+            "en": "Counts follow selected projection dimensions and rank, not a measured model artifact.",
+            "tr": "Sayılar seçili izdüşüm boyutları ve ranktan hesaplanır; ölçülmüş model çıktısı değildir."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        },
+        {
+          "assumptionRefs": ["generic-profile", "memory-estimate"],
+          "id": "memory",
+          "kind": "estimated",
+          "label": {
+            "en": "Training memory",
+            "tr": "Eğitim belleği"
+          },
+          "notes": {
+            "en": "Conditional estimates include documented precision and workspace assumptions. They do not certify device fit.",
+            "tr": "Koşullu tahminler belgelenmiş hassasiyet ve çalışma alanı varsayımlarını içerir. Cihaza sığmayı belgelemez."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        },
+        {
+          "assumptionRefs": ["synthetic-learning"],
+          "id": "learning",
+          "kind": "simulated",
+          "label": {
+            "en": "Training curves and evaluation",
+            "tr": "Eğitim eğrileri ve değerlendirme"
+          },
+          "notes": {
+            "en": "Synthetic curves, loss and evaluation gates illustrate mechanisms. They are not benchmarks or measured generalization.",
+            "tr": "Sentetik eğri, kayıp ve değerlendirme kapıları mekanizmayı açıklar. Benchmark veya ölçülmüş genelleme değildir."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        }
+      ],
+      "name": "Model Adaptation Laboratory",
+      "parentApp": "usl",
+      "routes": [
+        "/?lesson=adaptation-101",
+        "/?scenario=custom",
+        "/?scenario=domain",
+        "/?scenario=memory",
+        "/?scenario=overfit",
+        "/?scenario=quality",
+        "/?scenario=rank"
+      ],
+      "status": "live"
+    },
+    {
+      "appId": "arl",
+      "canonicalUrl": "https://arl.aserdargun.com/",
+      "catalogSource": "manifest",
+      "evidence": [
+        {
+          "assumptionRefs": [
+            "scripted-agent",
+            "simulated-authority",
+            "synthetic-units"
+          ],
+          "id": "execution",
+          "kind": "simulated",
+          "label": {
+            "en": "Execution and document fixtures",
+            "tr": "Yürütme ve belge örnekleri"
+          },
+          "notes": {
+            "en": "Event traces describe scripted runs over synthetic documents, not a live agent service.",
+            "tr": "Olay izleri sentetik belgelerdeki betikli yürütmeleri açıklar; canlı ajan servisi değildir."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        },
+        {
+          "assumptionRefs": ["scripted-agent", "simulated-authority"],
+          "calculatedFrom": ["execution"],
+          "id": "checks",
+          "kind": "calculated",
+          "label": {
+            "en": "Arithmetic and contract checks",
+            "tr": "Aritmetik ve sözleşme kontrolleri"
+          },
+          "notes": {
+            "en": "Arithmetic, evidence checks and task evaluation run separately. A passed simulator check does not verify real-world facts or confer authority.",
+            "tr": "Aritmetik, kanıt kontrolleri ve görev değerlendirmesi ayrı çalışır. Simülatörde geçen kontrol gerçek dünya olgusunu doğrulamaz veya yetki vermez."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        }
+      ],
+      "name": "Agent Runtime Laboratory",
+      "relationships": [
+        {
+          "appId": "ctx",
+          "role": "shared-runtime-lab"
+        },
+        {
+          "appId": "evl",
+          "role": "shared-runtime-lab"
+        },
+        {
+          "appId": "hns",
+          "role": "shared-runtime-lab"
+        },
+        {
+          "appId": "sec",
+          "role": "shared-runtime-lab"
+        }
+      ],
+      "routes": [
+        "/?lesson=agent-runtime-101",
+        "/?scenario=bad-evidence",
+        "/?scenario=budget",
+        "/?scenario=calculation",
+        "/?scenario=injection",
+        "/?scenario=missing",
+        "/?scenario=overflow",
+        "/?scenario=retry",
+        "/?scenario=revenue",
+        "/?scenario=timeout"
+      ],
+      "status": "live"
+    },
+    {
+      "appId": "cld",
+      "canonicalUrl": "https://cld.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "CLD",
+      "relationships": [
+        {
+          "appId": "dcl",
+          "role": "shared-decision-lab"
+        }
+      ],
+      "routes": ["/"]
+    },
+    {
+      "appId": "ctx",
+      "canonicalUrl": "https://ctx.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "CTX",
+      "routes": ["/"]
+    },
+    {
+      "appId": "dcl",
+      "canonicalUrl": "https://dcl.aserdargun.com/",
+      "catalogSource": "manifest",
+      "evidence": [
+        {
+          "assumptionRefs": ["educational-defaults", "bounded-model"],
+          "id": "defaults",
+          "kind": "estimated",
+          "label": {
+            "en": "Price and capacity defaults",
+            "tr": "Fiyat ve kapasite varsayımları"
+          },
+          "notes": {
+            "en": "Educational estimates carry no verification of current market prices or serving performance.",
+            "tr": "Eğitim tahminleri güncel piyasa fiyatını veya servis performansını doğrulamaz."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "unverified"
+        },
+        {
+          "assumptionRefs": ["educational-defaults", "bounded-model"],
+          "id": "inputs",
+          "kind": "user-input",
+          "label": {
+            "en": "Workload and overrides",
+            "tr": "İş yükü ve değişiklikler"
+          },
+          "notes": {
+            "en": "User edits and selected presets define the current calculation; changing a scenario can retain price overrides.",
+            "tr": "Kullanıcı düzenlemeleri ve seçilen önayar mevcut hesabı belirler; senaryo değişimi fiyat düzenlemelerini koruyabilir."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        },
+        {
+          "assumptionRefs": ["educational-defaults", "bounded-model"],
+          "calculatedFrom": ["defaults", "inputs"],
+          "id": "results",
+          "kind": "calculated",
+          "label": {
+            "en": "Memory, cost and eligibility",
+            "tr": "Bellek, maliyet ve uygunluk"
+          },
+          "notes": {
+            "en": "Results follow the displayed inputs and formulas. A calculated ranking is conditional, not a universal purchase recommendation.",
+            "tr": "Sonuçlar gösterilen girdileri ve formülleri izler. Hesaplanan sıralama koşulludur; evrensel satın alma önerisi değildir."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        }
+      ],
+      "name": "Deployment Choice Laboratory",
+      "relationships": [
+        {
+          "appId": "cld",
+          "role": "cloud-evidence"
+        },
+        {
+          "appId": "lcl",
+          "role": "local-evidence"
+        }
+      ],
+      "routes": [
+        "/?lesson=deployment-101",
+        "/?scenario=always",
+        "/?scenario=batch",
+        "/?scenario=company",
+        "/?scenario=personal",
+        "/?scenario=privacy",
+        "/?scenario=startup",
+        "/?scenario=team70"
+      ],
+      "status": "live"
+    },
+    {
+      "appId": "evl",
+      "canonicalUrl": "https://evl.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "EVL",
+      "routes": ["/"]
+    },
+    {
+      "appId": "gex",
+      "canonicalUrl": "https://gex.aserdargun.com/gex/",
+      "catalogSource": "manifest",
+      "evidence": [
+        {
+          "assumptionRefs": ["conceptual-gpu", "cuda-scope"],
+          "id": "conceptual-execution",
+          "kind": "simulated",
+          "label": {
+            "en": "Conceptual execution",
+            "tr": "Kavramsal yürütme"
+          },
+          "notes": {
+            "en": "Events illustrate a mechanism; no CUDA workload or profiler runs.",
+            "tr": "Olaylar bir mekanizmayı açıklar; CUDA iş yükü veya profiler çalışmaz."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        },
+        {
+          "assumptionRefs": ["cuda-scope"],
+          "id": "numerical-reference",
+          "kind": "calculated",
+          "label": {
+            "en": "Numerical reference",
+            "tr": "Sayısal referans"
+          },
+          "notes": {
+            "en": "Address groups, masks and matrix sums are calculated by the educational model. They are not hardware measurements.",
+            "tr": "Adres grupları, maskeler ve matris toplamları eğitim modeliyle hesaplanır. Donanım ölçümü değildir."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        }
+      ],
+      "name": "GPU Execution Explorer",
+      "parentApp": "gpu",
+      "routes": [
+        "/gex/anatomy",
+        "/gex/kernel",
+        "/gex/memory",
+        "/gex/sm",
+        "/gex/tensor",
+        "/gex/warp"
+      ],
+      "status": "live"
+    },
+    {
+      "appId": "gpu",
+      "canonicalUrl": "https://gpu.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "GPU",
+      "routes": ["/"]
+    },
+    {
+      "appId": "hns",
+      "canonicalUrl": "https://hns.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "HNS",
+      "routes": ["/"]
+    },
+    {
+      "appId": "lcl",
+      "canonicalUrl": "https://lcl.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "LCL",
+      "relationships": [
+        {
+          "appId": "dcl",
+          "role": "shared-decision-lab"
+        }
+      ],
+      "routes": ["/"]
+    },
+    {
+      "appId": "llm",
+      "canonicalUrl": "https://llm.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "LLM",
+      "routes": ["/", "/en/learn/concepts/prefill-decode"]
+    },
+    {
+      "appId": "sec",
+      "canonicalUrl": "https://sec.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "SEC",
+      "routes": ["/"]
+    },
+    {
+      "appId": "tfl",
+      "canonicalUrl": "https://tfl.aserdargun.com/",
+      "catalogSource": "manifest",
+      "evidence": [
+        {
+          "assumptionRefs": ["educational-serving", "educational-scheduler"],
+          "id": "simulated-events",
+          "kind": "simulated",
+          "label": {
+            "en": "Synthetic event times",
+            "tr": "Sentetik olay zamanları"
+          },
+          "notes": {
+            "en": "Event timestamps come from the deterministic educational simulator.",
+            "tr": "Olay zamanları deterministik eğitim simülatöründen gelir."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        },
+        {
+          "assumptionRefs": ["educational-serving"],
+          "calculatedFrom": ["simulated-events"],
+          "id": "ttft",
+          "kind": "calculated",
+          "label": {
+            "en": "TTFT from simulated events",
+            "tr": "Simüle olaylardan TTFT"
+          },
+          "notes": {
+            "en": "First delivered token time minus arrival time, including queueing. Calculated from simulated inputs, not measured latency.",
+            "tr": "Kuyruk dahil ilk iletilen token zamanı eksi geliş zamanı. Simüle girdilerden hesaplanır; ölçülen gecikme değildir."
+          },
+          "schemaVersion": "0.1",
+          "verificationStatus": "not-applicable"
+        }
+      ],
+      "name": "Token Flow Laboratory",
+      "parentApp": "llm",
+      "routes": [
+        "/?experiment=batching",
+        "/?experiment=burst",
+        "/?experiment=code",
+        "/?experiment=kv",
+        "/?experiment=long",
+        "/?experiment=overload",
+        "/?experiment=short",
+        "/?experiment=single",
+        "/?experiment=steady",
+        "/?lesson=token-flow-101&chapter=0"
+      ],
+      "status": "live"
+    },
+    {
+      "appId": "usl",
+      "canonicalUrl": "https://usl.aserdargun.com/",
+      "catalogSource": "reference",
+      "name": "USL",
+      "routes": ["/"]
+    }
+  ],
+  "concepts": [
+    {
+      "description": {
+        "en": "The mechanism coordinating model calls, tool interactions and controlled actions."
+      },
+      "domain": "agents",
+      "id": "concept:agent-runtime",
+      "label": {
+        "en": "Agent runtime",
+        "tr": "Ajan çalışma sistemi"
+      },
+      "related": [
+        {
+          "target": "concept:tool-use",
+          "type": "applied-by"
+        },
+        {
+          "target": "concept:request",
+          "type": "related"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A scoped decision that permits a particular actor to perform an action on a resource."
+      },
+      "domain": "agents",
+      "id": "concept:authorization",
+      "label": {
+        "en": "Authorization",
+        "tr": "Yetkilendirme"
+      },
+      "related": [
+        {
+          "target": "concept:delegation",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A representation of possible environment states consistent with available observations."
+      },
+      "domain": "physical-ai",
+      "id": "concept:belief-state",
+      "label": {
+        "en": "Belief state"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A group of GPU threads that can cooperate through block-scoped resources."
+      },
+      "domain": "gpu",
+      "id": "concept:block",
+      "label": {
+        "en": "Thread block"
+      },
+      "related": [
+        {
+          "target": "concept:warp",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "The stated workload or time where compared cost models become equal."
+      },
+      "domain": "deployment",
+      "id": "concept:break-even",
+      "label": {
+        "en": "Break-even"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["memory capacity"],
+      "description": {
+        "en": "Relating anticipated demand to the resources required to serve it."
+      },
+      "domain": "deployment",
+      "id": "concept:capacity-planning",
+      "label": {
+        "en": "Capacity planning",
+        "tr": "Kapasite planlama"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A rotating machine that transfers energy to fluid through an impeller."
+      },
+      "domain": "engineering",
+      "id": "concept:centrifugal-pump",
+      "label": {
+        "en": "Centrifugal pump",
+        "tr": "Santrifüj pompa"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Running model inference on remotely provisioned compute resources."
+      },
+      "domain": "deployment",
+      "id": "concept:cloud-inference",
+      "label": {
+        "en": "Cloud inference"
+      },
+      "related": [
+        {
+          "target": "concept:deployment-choice",
+          "type": "part-of"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Resource search and collection arising from multiple interacting agents."
+      },
+      "domain": "collective-systems",
+      "id": "concept:collective-foraging",
+      "label": {
+        "en": "Collective foraging",
+        "tr": "Kolektif besin arama"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Requests whose lifetimes overlap and compete for serving resources."
+      },
+      "domain": "serving",
+      "id": "concept:concurrency",
+      "label": {
+        "en": "Concurrent requests",
+        "tr": "Eşzamanlı istekler"
+      },
+      "related": [
+        {
+          "target": "concept:memory-fit",
+          "type": "affects"
+        },
+        {
+          "target": "concept:throughput",
+          "type": "affects"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Observing signals over time to reason about equipment condition."
+      },
+      "domain": "engineering",
+      "id": "concept:condition-monitoring",
+      "label": {
+        "en": "Condition monitoring",
+        "tr": "Durum izleme"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Information available to an agent or model for interpreting the current task."
+      },
+      "domain": "agents",
+      "id": "concept:context",
+      "label": {
+        "en": "Context"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Selecting and assembling information made available to a model invocation."
+      },
+      "domain": "agents",
+      "id": "concept:context-construction",
+      "label": {
+        "en": "Context construction",
+        "tr": "Bağlam oluşturma"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "The token span a model configuration can consider during a request."
+      },
+      "domain": "serving",
+      "id": "concept:context-window",
+      "label": {
+        "en": "Context window",
+        "tr": "Bağlam penceresi"
+      },
+      "related": [
+        {
+          "target": "concept:kv-cache",
+          "type": "affects"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Comparing what could happen under an alternative action or assumption."
+      },
+      "domain": "physical-ai",
+      "id": "concept:counterfactual",
+      "label": {
+        "en": "Counterfactual experiment",
+        "tr": "Karşıolgusal deney"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "The suitability, consistency and coverage of data for a specified learning objective."
+      },
+      "domain": "adaptation",
+      "id": "concept:data-quality",
+      "label": {
+        "en": "Data quality"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Autoregressive processing that extends a sequence one selected token at a time."
+      },
+      "domain": "serving",
+      "id": "concept:decode",
+      "label": {
+        "en": "Decode",
+        "tr": "Çözümleme"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Assigning a bounded task or authority scope to another actor."
+      },
+      "domain": "agents",
+      "id": "concept:delegation",
+      "label": {
+        "en": "Delegation"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["deployment"],
+      "description": {
+        "en": "Choosing where and how to run a workload subject to constraints and evidence."
+      },
+      "domain": "deployment",
+      "id": "concept:deployment-choice",
+      "label": {
+        "en": "Deployment choice",
+        "tr": "Dağıtım seçimi"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A representation linked to a particular physical system through an explicit update and evidence process."
+      },
+      "domain": "engineering",
+      "id": "concept:digital-twin",
+      "label": {
+        "en": "Digital twin"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Systems whose sensing and actions are coupled to a physical environment."
+      },
+      "domain": "physical-ai",
+      "id": "concept:embodied-systems",
+      "label": {
+        "en": "Embodied systems",
+        "tr": "Bedensel sistemler"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["evaluation"],
+      "description": {
+        "en": "Assessing whether available evidence supports a claim under explicit criteria."
+      },
+      "domain": "agents",
+      "id": "concept:evidence-evaluation",
+      "label": {
+        "en": "Evidence evaluation",
+        "tr": "Kanıt değerlendirme"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Adjusting actions using observed differences from a desired condition."
+      },
+      "domain": "physical-ai",
+      "id": "concept:feedback-control",
+      "label": {
+        "en": "Feedback control",
+        "tr": "Geri beslemeli kontrol"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Updating all selected base-model parameters during adaptation."
+      },
+      "domain": "adaptation",
+      "id": "concept:full-finetune",
+      "label": {
+        "en": "Full fine-tuning"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Performance on data beyond the examples used to fit a model."
+      },
+      "domain": "adaptation",
+      "id": "concept:generalization",
+      "label": {
+        "en": "Generalization",
+        "tr": "Genelleme"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["GPU architecture"],
+      "description": {
+        "en": "Organization of a GPU into compute, memory and scheduling resources."
+      },
+      "domain": "gpu",
+      "id": "concept:gpu-anatomy",
+      "label": {
+        "en": "GPU anatomy",
+        "tr": "GPU anatomisi"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Storage resources and data movement serving GPU computation."
+      },
+      "domain": "gpu",
+      "id": "concept:gpu-memory",
+      "label": {
+        "en": "GPU memory",
+        "tr": "GPU belleği"
+      },
+      "related": [
+        {
+          "target": "concept:gpu-anatomy",
+          "type": "part-of"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "The collection of thread blocks launched for a GPU kernel."
+      },
+      "domain": "gpu",
+      "id": "concept:grid",
+      "label": {
+        "en": "Grid"
+      },
+      "related": [
+        {
+          "target": "concept:block",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "aliases": ["ITL", "time per output token"],
+      "description": {
+        "en": "Time between successive delivered output tokens under an explicit measurement boundary."
+      },
+      "domain": "serving",
+      "id": "concept:inter-token-latency",
+      "label": {
+        "en": "Inter-token latency"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["GPU execution"],
+      "description": {
+        "en": "Launching and executing a parallel program on GPU resources."
+      },
+      "domain": "gpu",
+      "id": "concept:kernel-execution",
+      "label": {
+        "en": "Kernel execution",
+        "tr": "Kernel yürütmesi"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Geometric relationships describing motion without specifying its forces."
+      },
+      "domain": "physical-ai",
+      "id": "concept:kinematics",
+      "label": {
+        "en": "Kinematics",
+        "tr": "Kinematik"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["key value cache"],
+      "description": {
+        "en": "Stored attention keys and values reused across processing steps; runtime capacity depends on the workload."
+      },
+      "domain": "serving",
+      "id": "concept:kv-cache",
+      "label": {
+        "en": "KV cache",
+        "tr": "KV önbellek"
+      },
+      "related": [
+        {
+          "target": "concept:memory-fit",
+          "type": "affects"
+        },
+        {
+          "target": "concept:gpu-memory",
+          "type": "deeper"
+        },
+        {
+          "target": "concept:context-window",
+          "type": "related"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Running model inference on resources controlled locally by the user or organization."
+      },
+      "domain": "deployment",
+      "id": "concept:local-inference",
+      "label": {
+        "en": "Local inference"
+      },
+      "related": [
+        {
+          "target": "concept:deployment-choice",
+          "type": "part-of"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Information available from an agent's bounded sensing neighborhood."
+      },
+      "domain": "collective-systems",
+      "id": "concept:local-observation",
+      "label": {
+        "en": "Local observation",
+        "tr": "Yerel gözlem"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["LoRA"],
+      "description": {
+        "en": "Training low-rank parameter updates while retaining a frozen base model."
+      },
+      "domain": "adaptation",
+      "id": "concept:low-rank-adaptation",
+      "label": {
+        "en": "Low-rank adaptation",
+        "tr": "Düşük rank uyarlama"
+      },
+      "related": [
+        {
+          "target": "concept:trainable-parameters",
+          "type": "affects"
+        },
+        {
+          "target": "concept:qlora",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Whether a workload's modeled memory requirement fits an available resource budget."
+      },
+      "domain": "deployment",
+      "id": "concept:memory-fit",
+      "label": {
+        "en": "Memory fit"
+      },
+      "related": [
+        {
+          "target": "concept:deployment-choice",
+          "type": "affects"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Changing a model to support a task or data distribution through an explicit adaptation method."
+      },
+      "domain": "adaptation",
+      "id": "concept:model-adaptation",
+      "label": {
+        "en": "Model adaptation",
+        "tr": "Model uyarlama"
+      },
+      "related": [
+        {
+          "target": "concept:low-rank-adaptation",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Information obtained about the environment through a sensing process."
+      },
+      "domain": "physical-ai",
+      "id": "concept:observation",
+      "label": {
+        "en": "Observation"
+      },
+      "related": [
+        {
+          "target": "concept:belief-state",
+          "type": "affects"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Fitting training-specific patterns that do not transfer to the intended evaluation setting."
+      },
+      "domain": "adaptation",
+      "id": "concept:overfitting",
+      "label": {
+        "en": "Overfitting"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["TCO", "total cost of ownership"],
+      "description": {
+        "en": "Costs attributed to operating an option over a stated horizon and workload."
+      },
+      "domain": "deployment",
+      "id": "concept:ownership-cost",
+      "label": {
+        "en": "Ownership cost",
+        "tr": "Sahiplik maliyeti"
+      },
+      "related": [
+        {
+          "target": "concept:break-even",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "An agent receives observations that do not fully reveal the environment state."
+      },
+      "domain": "physical-ai",
+      "id": "concept:partial-observability",
+      "label": {
+        "en": "Partial observability",
+        "tr": "Kısmi gözlemlenebilirlik"
+      },
+      "related": [
+        {
+          "target": "concept:belief-state",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Selecting candidate actions by reasoning about their possible consequences."
+      },
+      "domain": "physical-ai",
+      "id": "concept:planning",
+      "label": {
+        "en": "Planning"
+      },
+      "related": [
+        {
+          "target": "concept:robot-control",
+          "type": "applied-by"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A model's proposed future observation or state under specified conditions."
+      },
+      "domain": "physical-ai",
+      "id": "concept:prediction",
+      "label": {
+        "en": "Prediction"
+      },
+      "related": [
+        {
+          "target": "concept:counterfactual",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A discrepancy between predicted and observed outcomes under a stated comparison."
+      },
+      "domain": "physical-ai",
+      "id": "concept:prediction-error",
+      "label": {
+        "en": "Prediction error",
+        "tr": "Tahmin hatası"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Processing input tokens to establish attention state before autoregressive output continues."
+      },
+      "domain": "serving",
+      "id": "concept:prefill",
+      "label": {
+        "en": "Prefill",
+        "tr": "Ön doldurma"
+      },
+      "related": [
+        {
+          "target": "concept:ttft",
+          "type": "affects"
+        },
+        {
+          "target": "concept:kernel-execution",
+          "type": "deeper"
+        },
+        {
+          "target": "concept:request",
+          "type": "observed-in"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Input supplied to guide model generation."
+      },
+      "domain": "serving",
+      "id": "concept:prompt",
+      "label": {
+        "en": "Prompt",
+        "tr": "İstem"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Untrusted content attempting to redirect an agent's instructions or actions."
+      },
+      "domain": "agents",
+      "id": "concept:prompt-injection",
+      "label": {
+        "en": "Prompt injection"
+      },
+      "related": [
+        {
+          "target": "concept:context-construction",
+          "type": "affects"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Low-rank adaptation using a quantized frozen base model during training."
+      },
+      "domain": "adaptation",
+      "id": "concept:qlora",
+      "label": {
+        "en": "QLoRA"
+      },
+      "related": [
+        {
+          "target": "concept:training-memory",
+          "type": "affects"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Waiting requests awaiting admission or execution resources."
+      },
+      "domain": "serving",
+      "id": "concept:queue",
+      "label": {
+        "en": "Queue"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A unit of model-serving work with input, arrival and output constraints."
+      },
+      "domain": "serving",
+      "id": "concept:request",
+      "label": {
+        "en": "Request"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Translating a physical objective and feedback into bounded robot actions."
+      },
+      "domain": "physical-ai",
+      "id": "concept:robot-control",
+      "label": {
+        "en": "Robot control"
+      },
+      "related": [
+        {
+          "target": "concept:feedback-control",
+          "type": "related"
+        }
+      ],
+      "status": "experimental"
+    },
+    {
+      "description": {
+        "en": "An execution boundary that limits the resources and operations available to a task."
+      },
+      "domain": "agents",
+      "id": "concept:sandbox",
+      "label": {
+        "en": "Sandbox"
+      },
+      "status": "active"
+    },
+    {
+      "aliases": ["scheduler"],
+      "description": {
+        "en": "Selecting when admitted or waiting work receives execution resources."
+      },
+      "domain": "serving",
+      "id": "concept:scheduling",
+      "label": {
+        "en": "Scheduling",
+        "tr": "Zamanlama"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Explicitly managed storage used for cooperation and data reuse within a thread block."
+      },
+      "domain": "gpu",
+      "id": "concept:shared-memory",
+      "label": {
+        "en": "Shared memory"
+      },
+      "related": [
+        {
+          "target": "concept:gpu-memory",
+          "type": "part-of"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "aliases": ["single instruction multiple threads"],
+      "description": {
+        "en": "An execution model that applies a common instruction stream to multiple threads."
+      },
+      "domain": "gpu",
+      "id": "concept:simt",
+      "label": {
+        "en": "SIMT",
+        "tr": "SIMT"
+      },
+      "related": [
+        {
+          "target": "concept:warp-divergence",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "aliases": ["SM"],
+      "description": {
+        "en": "A GPU processing unit that schedules and executes groups of threads."
+      },
+      "domain": "gpu",
+      "id": "concept:sm",
+      "label": {
+        "en": "Streaming multiprocessor",
+        "tr": "Akış çoklu işlemcisi"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Signals that influence other agents to participate in an activity."
+      },
+      "domain": "collective-systems",
+      "id": "concept:social-recruitment",
+      "label": {
+        "en": "Social recruitment",
+        "tr": "Sosyal katılım"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Indirect coordination through changes made to a shared environment."
+      },
+      "domain": "collective-systems",
+      "id": "concept:stigmergy",
+      "label": {
+        "en": "Stigmergy",
+        "tr": "Stigmerji"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Delivering generated output incrementally as tokens become available."
+      },
+      "domain": "serving",
+      "id": "concept:streaming",
+      "label": {
+        "en": "Token streaming",
+        "tr": "Token iletimi"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Constructed signals used to explore assumptions rather than report physical measurements."
+      },
+      "domain": "engineering",
+      "id": "concept:synthetic-signals",
+      "label": {
+        "en": "Synthetic signals",
+        "tr": "Sentetik sinyaller"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Partitioning matrix operations into tiles for coordinated computation and data reuse."
+      },
+      "domain": "gpu",
+      "id": "concept:tensor-compute",
+      "label": {
+        "en": "Tiled matrix computation",
+        "tr": "Döşemeli matris hesaplama"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A specialized GPU execution resource for supported matrix operations and formats."
+      },
+      "domain": "gpu",
+      "id": "concept:tensor-core",
+      "label": {
+        "en": "Tensor core"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Completed work per time interval, with the work unit and interval stated."
+      },
+      "domain": "serving",
+      "id": "concept:throughput",
+      "label": {
+        "en": "Throughput"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Partitioning work and data into reusable bounded regions."
+      },
+      "domain": "gpu",
+      "id": "concept:tiling",
+      "label": {
+        "en": "Tiling"
+      },
+      "related": [
+        {
+          "target": "concept:tensor-compute",
+          "type": "applied-by"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Accessing model inference through a provider service with a token-oriented usage interface."
+      },
+      "domain": "deployment",
+      "id": "concept:token-api",
+      "label": {
+        "en": "Token API"
+      },
+      "related": [
+        {
+          "target": "concept:cloud-inference",
+          "type": "related"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Mapping text into the discrete token units accepted by a model."
+      },
+      "domain": "serving",
+      "id": "concept:tokenization",
+      "label": {
+        "en": "Tokenization",
+        "tr": "Tokenlaştırma"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Invoking an external capability under a runtime's arguments and permissions."
+      },
+      "domain": "agents",
+      "id": "concept:tool-use",
+      "label": {
+        "en": "Tool use"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Parameters whose values the optimizer may update during training."
+      },
+      "domain": "adaptation",
+      "id": "concept:trainable-parameters",
+      "label": {
+        "en": "Trainable parameters"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Storage required by training parameters, gradients, optimizer state, activations and runtime overhead."
+      },
+      "domain": "adaptation",
+      "id": "concept:training-memory",
+      "label": {
+        "en": "Training memory",
+        "tr": "Eğitim belleği"
+      },
+      "related": [
+        {
+          "target": "concept:memory-fit",
+          "type": "affects"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "aliases": ["TTFT"],
+      "description": {
+        "en": "Elapsed time from a request boundary to its first delivered output token; the measurement boundary must be stated."
+      },
+      "domain": "serving",
+      "id": "concept:ttft",
+      "label": {
+        "en": "Time to first token",
+        "tr": "İlk tokena kadar süre"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Checking an output or action against explicit acceptance conditions."
+      },
+      "domain": "agents",
+      "id": "concept:verification",
+      "label": {
+        "en": "Verification"
+      },
+      "related": [
+        {
+          "target": "concept:evidence-evaluation",
+          "type": "related"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A hardware execution group of threads within a GPU thread block."
+      },
+      "domain": "gpu",
+      "id": "concept:warp",
+      "label": {
+        "en": "Warp"
+      },
+      "related": [
+        {
+          "target": "concept:simt",
+          "type": "prerequisite"
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "Different thread control paths within an execution group require separate execution of active lanes."
+      },
+      "domain": "gpu",
+      "id": "concept:warp-divergence",
+      "label": {
+        "en": "Warp divergence",
+        "tr": "Warp dallanması"
+      },
+      "status": "active"
+    },
+    {
+      "description": {
+        "en": "A model used to predict how a represented environment changes."
+      },
+      "domain": "physical-ai",
+      "id": "concept:world-model",
+      "label": {
+        "en": "World model",
+        "tr": "Dünya modeli"
+      },
+      "related": [
+        {
+          "target": "concept:planning",
+          "type": "applied-by"
+        }
+      ],
+      "status": "active"
+    }
+  ],
+  "edges": [
+    {
+      "from": {
+        "id": "adp",
+        "kind": "application"
+      },
+      "to": {
+        "id": "usl",
+        "kind": "application"
+      },
+      "type": "parent"
+    },
+    {
+      "from": {
+        "id": "arl",
+        "kind": "application"
+      },
+      "to": {
+        "id": "ctx",
+        "kind": "application"
+      },
+      "type": "shared-runtime-lab"
+    },
+    {
+      "from": {
+        "id": "arl",
+        "kind": "application"
+      },
+      "to": {
+        "id": "evl",
+        "kind": "application"
+      },
+      "type": "shared-runtime-lab"
+    },
+    {
+      "from": {
+        "id": "arl",
+        "kind": "application"
+      },
+      "to": {
+        "id": "hns",
+        "kind": "application"
+      },
+      "type": "shared-runtime-lab"
+    },
+    {
+      "from": {
+        "id": "arl",
+        "kind": "application"
+      },
+      "to": {
+        "id": "sec",
+        "kind": "application"
+      },
+      "type": "shared-runtime-lab"
+    },
+    {
+      "from": {
+        "id": "cld",
+        "kind": "application"
+      },
+      "to": {
+        "id": "dcl",
+        "kind": "application"
+      },
+      "type": "shared-decision-lab"
+    },
+    {
+      "from": {
+        "id": "dcl",
+        "kind": "application"
+      },
+      "to": {
+        "id": "cld",
+        "kind": "application"
+      },
+      "type": "cloud-evidence"
+    },
+    {
+      "from": {
+        "id": "dcl",
+        "kind": "application"
+      },
+      "to": {
+        "id": "lcl",
+        "kind": "application"
+      },
+      "type": "local-evidence"
+    },
+    {
+      "from": {
+        "id": "gex",
+        "kind": "application"
+      },
+      "to": {
+        "id": "gpu",
+        "kind": "application"
+      },
+      "type": "parent"
+    },
+    {
+      "from": {
+        "id": "lcl",
+        "kind": "application"
+      },
+      "to": {
+        "id": "dcl",
+        "kind": "application"
+      },
+      "type": "shared-decision-lab"
+    },
+    {
+      "from": {
+        "id": "tfl",
+        "kind": "application"
+      },
+      "to": {
+        "id": "llm",
+        "kind": "application"
+      },
+      "type": "parent"
+    },
+    {
+      "from": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:tool-use",
+        "kind": "concept"
+      },
+      "type": "applied-by"
+    },
+    {
+      "from": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:request",
+        "kind": "concept"
+      },
+      "type": "related"
+    },
+    {
+      "from": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:delegation",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:block",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:warp",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:cloud-inference",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "part-of"
+    },
+    {
+      "from": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:memory-fit",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:throughput",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:context-window",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:gpu-memory",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:gpu-anatomy",
+        "kind": "concept"
+      },
+      "type": "part-of"
+    },
+    {
+      "from": {
+        "id": "concept:grid",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:block",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:memory-fit",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:gpu-memory",
+        "kind": "concept"
+      },
+      "type": "deeper"
+    },
+    {
+      "from": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:context-window",
+        "kind": "concept"
+      },
+      "type": "related"
+    },
+    {
+      "from": {
+        "id": "concept:local-inference",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "part-of"
+    },
+    {
+      "from": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:trainable-parameters",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:qlora",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:memory-fit",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:model-adaptation",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:observation",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:belief-state",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:break-even",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:partial-observability",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:belief-state",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:planning",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:robot-control",
+        "kind": "concept"
+      },
+      "type": "applied-by"
+    },
+    {
+      "from": {
+        "id": "concept:prediction",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:counterfactual",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:prefill",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:ttft",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:prefill",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:kernel-execution",
+        "kind": "concept"
+      },
+      "type": "deeper"
+    },
+    {
+      "from": {
+        "id": "concept:prefill",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:request",
+        "kind": "concept"
+      },
+      "type": "observed-in"
+    },
+    {
+      "from": {
+        "id": "concept:prompt-injection",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:qlora",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:robot-control",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:feedback-control",
+        "kind": "concept"
+      },
+      "type": "related"
+    },
+    {
+      "from": {
+        "id": "concept:shared-memory",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:gpu-memory",
+        "kind": "concept"
+      },
+      "type": "part-of"
+    },
+    {
+      "from": {
+        "id": "concept:simt",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:warp-divergence",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:tiling",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:tensor-compute",
+        "kind": "concept"
+      },
+      "type": "applied-by"
+    },
+    {
+      "from": {
+        "id": "concept:token-api",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:cloud-inference",
+        "kind": "concept"
+      },
+      "type": "related"
+    },
+    {
+      "from": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:memory-fit",
+        "kind": "concept"
+      },
+      "type": "affects"
+    },
+    {
+      "from": {
+        "id": "concept:verification",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "related"
+    },
+    {
+      "from": {
+        "id": "concept:warp",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:simt",
+        "kind": "concept"
+      },
+      "type": "prerequisite"
+    },
+    {
+      "from": {
+        "id": "concept:world-model",
+        "kind": "concept"
+      },
+      "to": {
+        "id": "concept:planning",
+        "kind": "concept"
+      },
+      "type": "applied-by"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "custom",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:generalization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "custom",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "custom",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:model-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "custom",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "domain",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:generalization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "domain",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "domain",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:model-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "domain",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "memory",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:generalization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "memory",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "memory",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:model-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "memory",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "overfit",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:generalization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "overfit",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "overfit",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:model-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "overfit",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "quality",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:generalization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "quality",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "quality",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:model-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "quality",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "rank",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:generalization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "rank",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "rank",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:model-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "rank",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "bad-evidence",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "bad-evidence",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "bad-evidence",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "bad-evidence",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "budget",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "budget",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "budget",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "budget",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "calculation",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "calculation",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "calculation",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "calculation",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "injection",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "injection",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "injection",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "injection",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "missing",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "missing",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "missing",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "missing",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "overflow",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "overflow",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "overflow",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "overflow",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "retry",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "retry",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "retry",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "retry",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "revenue",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "revenue",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "revenue",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "revenue",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "timeout",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "timeout",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "timeout",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "timeout",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "always",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:capacity-planning",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "always",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "always",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "always",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "always",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "batch",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:capacity-planning",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "batch",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "batch",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "batch",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "batch",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "company",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:capacity-planning",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "company",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "company",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "company",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "company",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "personal",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:capacity-planning",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "personal",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "personal",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "personal",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "personal",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "privacy",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:capacity-planning",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "privacy",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "privacy",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "privacy",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "privacy",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "startup",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:capacity-planning",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "startup",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "startup",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "startup",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "startup",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "team70",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:capacity-planning",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "team70",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "team70",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "team70",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "team70",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "anatomy",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:gpu-anatomy",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "anatomy",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:gpu-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "kernel",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kernel-execution",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "kernel",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:simt",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "memory",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:gpu-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "sm",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:simt",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "sm",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:sm",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "tensor",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:gpu-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "tensor",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:tensor-compute",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "warp",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:simt",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "warp",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:warp-divergence",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "batching",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:scheduling",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "batching",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ttft",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "burst",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "burst",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:scheduling",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "code",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:decode",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "code",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "kv",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:gpu-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "kv",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "long",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:context-window",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "long",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "long",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:prefill",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "overload",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "overload",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:scheduling",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "short",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "short",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:scheduling",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "single",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:decode",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "single",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:prefill",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "single",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ttft",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "steady",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "steady",
+        "kind": "experiment"
+      },
+      "to": {
+        "id": "concept:ttft",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "adaptation-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:generalization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "adaptation-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:low-rank-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "adaptation-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:model-adaptation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "adp",
+        "id": "adaptation-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:training-memory",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "agent-runtime-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:agent-runtime",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "agent-runtime-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:authorization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "agent-runtime-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:context-construction",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "arl",
+        "id": "agent-runtime-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:evidence-evaluation",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "deployment-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:capacity-planning",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "deployment-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:concurrency",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "deployment-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:deployment-choice",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "deployment-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "dcl",
+        "id": "deployment-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:ownership-cost",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "follow-a-kernel",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:kernel-execution",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "gex",
+        "id": "follow-a-kernel",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:simt",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "token-flow-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:decode",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "token-flow-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:kv-cache",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "token-flow-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:prefill",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "token-flow-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:prompt",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "token-flow-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:scheduling",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "token-flow-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:streaming",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "token-flow-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:tokenization",
+        "kind": "concept"
+      },
+      "type": "covers"
+    },
+    {
+      "from": {
+        "appId": "tfl",
+        "id": "token-flow-101",
+        "kind": "lesson"
+      },
+      "to": {
+        "id": "concept:ttft",
+        "kind": "concept"
+      },
+      "type": "covers"
+    }
+  ],
+  "experiments": [
+    {
+      "appId": "adp",
+      "concepts": [
+        "concept:model-adaptation",
+        "concept:low-rank-adaptation",
+        "concept:training-memory",
+        "concept:generalization"
+      ],
+      "id": "custom",
+      "route": "/?scenario=custom",
+      "title": {
+        "en": "Custom experiment",
+        "tr": "Özel deney"
+      }
+    },
+    {
+      "appId": "adp",
+      "concepts": [
+        "concept:model-adaptation",
+        "concept:low-rank-adaptation",
+        "concept:training-memory",
+        "concept:generalization"
+      ],
+      "id": "domain",
+      "route": "/?scenario=domain",
+      "title": {
+        "en": "01 Domain QA",
+        "tr": "01 Alan soru-cevap"
+      }
+    },
+    {
+      "appId": "adp",
+      "concepts": [
+        "concept:model-adaptation",
+        "concept:low-rank-adaptation",
+        "concept:training-memory",
+        "concept:generalization"
+      ],
+      "id": "memory",
+      "route": "/?scenario=memory",
+      "title": {
+        "en": "04 Memory constraint",
+        "tr": "04 Bellek sınırı"
+      }
+    },
+    {
+      "appId": "adp",
+      "concepts": [
+        "concept:model-adaptation",
+        "concept:low-rank-adaptation",
+        "concept:training-memory",
+        "concept:generalization"
+      ],
+      "id": "overfit",
+      "route": "/?scenario=overfit",
+      "title": {
+        "en": "03 Overfitting",
+        "tr": "03 Aşırı uyum"
+      }
+    },
+    {
+      "appId": "adp",
+      "concepts": [
+        "concept:model-adaptation",
+        "concept:low-rank-adaptation",
+        "concept:training-memory",
+        "concept:generalization"
+      ],
+      "id": "quality",
+      "route": "/?scenario=quality",
+      "title": {
+        "en": "02 Data quality",
+        "tr": "02 Veri kalitesi"
+      }
+    },
+    {
+      "appId": "adp",
+      "concepts": [
+        "concept:model-adaptation",
+        "concept:low-rank-adaptation",
+        "concept:training-memory",
+        "concept:generalization"
+      ],
+      "id": "rank",
+      "route": "/?scenario=rank",
+      "title": {
+        "en": "05 Rank explorer",
+        "tr": "05 Rank keşfi"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "bad-evidence",
+      "route": "/?scenario=bad-evidence",
+      "title": {
+        "en": "Bad evidence",
+        "tr": "Hatalı kanıt"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "budget",
+      "route": "/?scenario=budget",
+      "title": {
+        "en": "Budget exhausted",
+        "tr": "Bütçe tükendi"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "calculation",
+      "route": "/?scenario=calculation",
+      "title": {
+        "en": "Wrong calculation",
+        "tr": "Yanlış hesaplama"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "injection",
+      "route": "/?scenario=injection",
+      "title": {
+        "en": "Prompt injection",
+        "tr": "İstem enjeksiyonu"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "missing",
+      "route": "/?scenario=missing",
+      "title": {
+        "en": "Missing evidence",
+        "tr": "Eksik kanıt"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "overflow",
+      "route": "/?scenario=overflow",
+      "title": {
+        "en": "Context overflow",
+        "tr": "Bağlam taşması"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "retry",
+      "route": "/?scenario=retry",
+      "title": {
+        "en": "Temporary tool failure",
+        "tr": "Geçici araç hatası"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "revenue",
+      "route": "/?scenario=revenue",
+      "title": {
+        "en": "Revenue report",
+        "tr": "Gelir raporu"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "timeout",
+      "route": "/?scenario=timeout",
+      "title": {
+        "en": "Persistent timeout",
+        "tr": "Sürekli zaman aşımı"
+      }
+    },
+    {
+      "appId": "dcl",
+      "concepts": [
+        "concept:deployment-choice",
+        "concept:capacity-planning",
+        "concept:ownership-cost",
+        "concept:concurrency",
+        "concept:kv-cache"
+      ],
+      "id": "always",
+      "route": "/?scenario=always",
+      "title": {
+        "en": "Always-on service",
+        "tr": "Kesintisiz servis"
+      }
+    },
+    {
+      "appId": "dcl",
+      "concepts": [
+        "concept:deployment-choice",
+        "concept:capacity-planning",
+        "concept:ownership-cost",
+        "concept:concurrency",
+        "concept:kv-cache"
+      ],
+      "id": "batch",
+      "route": "/?scenario=batch",
+      "title": {
+        "en": "Bursty batch",
+        "tr": "Aralıklı toplu iş"
+      }
+    },
+    {
+      "appId": "dcl",
+      "concepts": [
+        "concept:deployment-choice",
+        "concept:capacity-planning",
+        "concept:ownership-cost",
+        "concept:concurrency",
+        "concept:kv-cache"
+      ],
+      "id": "company",
+      "route": "/?scenario=company",
+      "title": {
+        "en": "30-person company",
+        "tr": "30 kişilik şirket"
+      }
+    },
+    {
+      "appId": "dcl",
+      "concepts": [
+        "concept:deployment-choice",
+        "concept:capacity-planning",
+        "concept:ownership-cost",
+        "concept:concurrency",
+        "concept:kv-cache"
+      ],
+      "id": "personal",
+      "route": "/?scenario=personal",
+      "title": {
+        "en": "Personal developer",
+        "tr": "Bireysel geliştirici"
+      }
+    },
+    {
+      "appId": "dcl",
+      "concepts": [
+        "concept:deployment-choice",
+        "concept:capacity-planning",
+        "concept:ownership-cost",
+        "concept:concurrency",
+        "concept:kv-cache"
+      ],
+      "id": "privacy",
+      "route": "/?scenario=privacy",
+      "title": {
+        "en": "Privacy first",
+        "tr": "Önce gizlilik"
+      }
+    },
+    {
+      "appId": "dcl",
+      "concepts": [
+        "concept:deployment-choice",
+        "concept:capacity-planning",
+        "concept:ownership-cost",
+        "concept:concurrency",
+        "concept:kv-cache"
+      ],
+      "id": "startup",
+      "route": "/?scenario=startup",
+      "title": {
+        "en": "API-first startup",
+        "tr": "API ile başlayan girişim"
+      }
+    },
+    {
+      "appId": "dcl",
+      "concepts": [
+        "concept:deployment-choice",
+        "concept:capacity-planning",
+        "concept:ownership-cost",
+        "concept:concurrency",
+        "concept:kv-cache"
+      ],
+      "id": "team70",
+      "route": "/?scenario=team70",
+      "title": {
+        "en": "70B team",
+        "tr": "70B ekibi"
+      }
+    },
+    {
+      "appId": "gex",
+      "concepts": ["concept:gpu-anatomy", "concept:gpu-memory"],
+      "id": "anatomy",
+      "route": "/gex/anatomy",
+      "title": {
+        "en": "GPU Anatomy",
+        "tr": "GPU Anatomisi"
+      }
+    },
+    {
+      "appId": "gex",
+      "concepts": ["concept:kernel-execution", "concept:simt"],
+      "id": "kernel",
+      "route": "/gex/kernel",
+      "title": {
+        "en": "Kernel Launch",
+        "tr": "Kernel Başlatma"
+      }
+    },
+    {
+      "appId": "gex",
+      "concepts": ["concept:gpu-memory"],
+      "id": "memory",
+      "route": "/gex/memory",
+      "title": {
+        "en": "Memory Journey",
+        "tr": "Bellek Yolculuğu"
+      }
+    },
+    {
+      "appId": "gex",
+      "concepts": ["concept:sm", "concept:simt"],
+      "id": "sm",
+      "route": "/gex/sm",
+      "title": {
+        "en": "Inside an SM",
+        "tr": "SM’nin İçinde"
+      }
+    },
+    {
+      "appId": "gex",
+      "concepts": ["concept:tensor-compute", "concept:gpu-memory"],
+      "id": "tensor",
+      "route": "/gex/tensor",
+      "title": {
+        "en": "Tensor / Tiled GEMM",
+        "tr": "Tensor / Döşemeli GEMM"
+      }
+    },
+    {
+      "appId": "gex",
+      "concepts": ["concept:simt", "concept:warp-divergence"],
+      "id": "warp",
+      "route": "/gex/warp",
+      "title": {
+        "en": "Warp / SIMT",
+        "tr": "Warp / SIMT"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": ["concept:scheduling", "concept:ttft"],
+      "id": "batching",
+      "route": "/?experiment=batching",
+      "title": {
+        "en": "Batching trade-off",
+        "tr": "Gruplama dengesi"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": ["concept:concurrency", "concept:scheduling"],
+      "id": "burst",
+      "route": "/?experiment=burst",
+      "title": {
+        "en": "Load Storm",
+        "tr": "Yük Fırtınası"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": ["concept:decode", "concept:kv-cache"],
+      "id": "code",
+      "route": "/?experiment=code",
+      "title": {
+        "en": "Code generation",
+        "tr": "Kod üretimi"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": ["concept:kv-cache", "concept:gpu-memory"],
+      "id": "kv",
+      "route": "/?experiment=kv",
+      "title": {
+        "en": "KV Wall",
+        "tr": "KV Duvarı"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": [
+        "concept:context-window",
+        "concept:prefill",
+        "concept:kv-cache"
+      ],
+      "id": "long",
+      "route": "/?experiment=long",
+      "title": {
+        "en": "32K context",
+        "tr": "32K bağlam"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": ["concept:concurrency", "concept:scheduling"],
+      "id": "overload",
+      "route": "/?experiment=overload",
+      "title": {
+        "en": "Overload",
+        "tr": "Aşırı yük"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": ["concept:concurrency", "concept:scheduling"],
+      "id": "short",
+      "route": "/?experiment=short",
+      "title": {
+        "en": "Many short users",
+        "tr": "Çok sayıda kısa istek"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": ["concept:prefill", "concept:decode", "concept:ttft"],
+      "id": "single",
+      "route": "/?experiment=single",
+      "title": {
+        "en": "One request",
+        "tr": "Tek istek"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": ["concept:concurrency", "concept:ttft"],
+      "id": "steady",
+      "route": "/?experiment=steady",
+      "title": {
+        "en": "Steady arrivals",
+        "tr": "Düzenli geliş"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "appId": "adp",
+      "concepts": [
+        "concept:model-adaptation",
+        "concept:low-rank-adaptation",
+        "concept:training-memory",
+        "concept:generalization"
+      ],
+      "id": "adaptation-101",
+      "route": "/?lesson=adaptation-101",
+      "title": {
+        "en": "Adaptation 101",
+        "tr": "Uyarlama 101"
+      }
+    },
+    {
+      "appId": "arl",
+      "concepts": [
+        "concept:agent-runtime",
+        "concept:context-construction",
+        "concept:authorization",
+        "concept:evidence-evaluation"
+      ],
+      "id": "agent-runtime-101",
+      "route": "/?lesson=agent-runtime-101",
+      "title": {
+        "en": "Agent Runtime 101",
+        "tr": "Ajan Çalışma Sistemi 101"
+      }
+    },
+    {
+      "appId": "dcl",
+      "concepts": [
+        "concept:deployment-choice",
+        "concept:capacity-planning",
+        "concept:ownership-cost",
+        "concept:concurrency",
+        "concept:kv-cache"
+      ],
+      "id": "deployment-101",
+      "route": "/?lesson=deployment-101",
+      "title": {
+        "en": "Deployment 101",
+        "tr": "Dağıtım 101"
+      }
+    },
+    {
+      "appId": "gex",
+      "concepts": ["concept:kernel-execution", "concept:simt"],
+      "id": "follow-a-kernel",
+      "route": "/gex/kernel",
+      "title": {
+        "en": "Follow a kernel",
+        "tr": "Bir kerneli izle"
+      }
+    },
+    {
+      "appId": "tfl",
+      "concepts": [
+        "concept:prefill",
+        "concept:decode",
+        "concept:kv-cache",
+        "concept:scheduling",
+        "concept:ttft",
+        "concept:prompt",
+        "concept:tokenization",
+        "concept:streaming"
+      ],
+      "id": "token-flow-101",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "title": {
+        "en": "Token Flow 101",
+        "tr": "Token Akışı 101"
+      }
+    }
+  ],
+  "paths": [
+    {
+      "id": "intent-to-silicon",
+      "steps": [
+        {
+          "appId": "arl",
+          "conceptId": "concept:agent-runtime",
+          "experimentId": "revenue",
+          "role": "experiment"
+        },
+        {
+          "appId": "tfl",
+          "conceptId": "concept:prefill",
+          "experimentId": "single",
+          "role": "experiment"
+        },
+        {
+          "appId": "gex",
+          "conceptId": "concept:tensor-compute",
+          "experimentId": "tensor",
+          "role": "dive-deeper"
+        }
+      ],
+      "title": {
+        "en": "Intent to silicon",
+        "tr": "Niyetten silikona"
+      }
+    },
+    {
+      "id": "model-to-silicon",
+      "steps": [
+        {
+          "appId": "adp",
+          "conceptId": "concept:training-memory",
+          "experimentId": "memory",
+          "role": "experiment"
+        },
+        {
+          "appId": "dcl",
+          "conceptId": "concept:capacity-planning",
+          "experimentId": "personal",
+          "role": "apply"
+        },
+        {
+          "appId": "tfl",
+          "conceptId": "concept:kv-cache",
+          "experimentId": "kv",
+          "role": "experiment"
+        },
+        {
+          "appId": "gex",
+          "conceptId": "concept:gpu-memory",
+          "experimentId": "memory",
+          "role": "dive-deeper"
+        }
+      ],
+      "title": {
+        "en": "Model to silicon",
+        "tr": "Modelden silikona"
+      }
+    }
+  ],
+  "placements": [
+    {
+      "appId": "adp",
+      "conceptId": "concept:generalization",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "custom",
+      "role": "experiment",
+      "route": "/?scenario=custom",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:generalization",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "domain",
+      "role": "experiment",
+      "route": "/?scenario=domain",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:generalization",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "memory",
+      "role": "experiment",
+      "route": "/?scenario=memory",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:generalization",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "overfit",
+      "role": "experiment",
+      "route": "/?scenario=overfit",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:generalization",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "quality",
+      "role": "experiment",
+      "route": "/?scenario=quality",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:generalization",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "rank",
+      "role": "experiment",
+      "route": "/?scenario=rank",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:generalization",
+      "lessonId": "adaptation-101",
+      "role": "experiment",
+      "route": "/?lesson=adaptation-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:low-rank-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "custom",
+      "role": "experiment",
+      "route": "/?scenario=custom",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:low-rank-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "domain",
+      "role": "experiment",
+      "route": "/?scenario=domain",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:low-rank-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "memory",
+      "role": "experiment",
+      "route": "/?scenario=memory",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:low-rank-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "overfit",
+      "role": "experiment",
+      "route": "/?scenario=overfit",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:low-rank-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "quality",
+      "role": "experiment",
+      "route": "/?scenario=quality",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:low-rank-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "rank",
+      "role": "experiment",
+      "route": "/?scenario=rank",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:low-rank-adaptation",
+      "lessonId": "adaptation-101",
+      "role": "experiment",
+      "route": "/?lesson=adaptation-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:model-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "custom",
+      "role": "experiment",
+      "route": "/?scenario=custom",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:model-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "domain",
+      "role": "experiment",
+      "route": "/?scenario=domain",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:model-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "memory",
+      "role": "experiment",
+      "route": "/?scenario=memory",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:model-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "overfit",
+      "role": "experiment",
+      "route": "/?scenario=overfit",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:model-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "quality",
+      "role": "experiment",
+      "route": "/?scenario=quality",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:model-adaptation",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "rank",
+      "role": "experiment",
+      "route": "/?scenario=rank",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:model-adaptation",
+      "lessonId": "adaptation-101",
+      "role": "experiment",
+      "route": "/?lesson=adaptation-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:training-memory",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "custom",
+      "role": "experiment",
+      "route": "/?scenario=custom",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:training-memory",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "domain",
+      "role": "experiment",
+      "route": "/?scenario=domain",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:training-memory",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "memory",
+      "role": "experiment",
+      "route": "/?scenario=memory",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:training-memory",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "overfit",
+      "role": "experiment",
+      "route": "/?scenario=overfit",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:training-memory",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "quality",
+      "role": "experiment",
+      "route": "/?scenario=quality",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:training-memory",
+      "evidenceRefs": ["configuration", "parameters", "memory", "learning"],
+      "experimentId": "rank",
+      "role": "experiment",
+      "route": "/?scenario=rank",
+      "surface": "experiment"
+    },
+    {
+      "appId": "adp",
+      "conceptId": "concept:training-memory",
+      "lessonId": "adaptation-101",
+      "role": "experiment",
+      "route": "/?lesson=adaptation-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "bad-evidence",
+      "role": "experiment",
+      "route": "/?scenario=bad-evidence",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "budget",
+      "role": "experiment",
+      "route": "/?scenario=budget",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "calculation",
+      "role": "experiment",
+      "route": "/?scenario=calculation",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "injection",
+      "role": "experiment",
+      "route": "/?scenario=injection",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "missing",
+      "role": "experiment",
+      "route": "/?scenario=missing",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "overflow",
+      "role": "experiment",
+      "route": "/?scenario=overflow",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "retry",
+      "role": "experiment",
+      "route": "/?scenario=retry",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "revenue",
+      "role": "experiment",
+      "route": "/?scenario=revenue",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "timeout",
+      "role": "experiment",
+      "route": "/?scenario=timeout",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:agent-runtime",
+      "lessonId": "agent-runtime-101",
+      "role": "experiment",
+      "route": "/?lesson=agent-runtime-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "bad-evidence",
+      "role": "experiment",
+      "route": "/?scenario=bad-evidence",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "budget",
+      "role": "experiment",
+      "route": "/?scenario=budget",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "calculation",
+      "role": "experiment",
+      "route": "/?scenario=calculation",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "injection",
+      "role": "experiment",
+      "route": "/?scenario=injection",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "missing",
+      "role": "experiment",
+      "route": "/?scenario=missing",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "overflow",
+      "role": "experiment",
+      "route": "/?scenario=overflow",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "retry",
+      "role": "experiment",
+      "route": "/?scenario=retry",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "revenue",
+      "role": "experiment",
+      "route": "/?scenario=revenue",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "timeout",
+      "role": "experiment",
+      "route": "/?scenario=timeout",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:authorization",
+      "lessonId": "agent-runtime-101",
+      "role": "experiment",
+      "route": "/?lesson=agent-runtime-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "bad-evidence",
+      "role": "experiment",
+      "route": "/?scenario=bad-evidence",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "budget",
+      "role": "experiment",
+      "route": "/?scenario=budget",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "calculation",
+      "role": "experiment",
+      "route": "/?scenario=calculation",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "injection",
+      "role": "experiment",
+      "route": "/?scenario=injection",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "missing",
+      "role": "experiment",
+      "route": "/?scenario=missing",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "overflow",
+      "role": "experiment",
+      "route": "/?scenario=overflow",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "retry",
+      "role": "experiment",
+      "route": "/?scenario=retry",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "revenue",
+      "role": "experiment",
+      "route": "/?scenario=revenue",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "timeout",
+      "role": "experiment",
+      "route": "/?scenario=timeout",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:context-construction",
+      "lessonId": "agent-runtime-101",
+      "role": "experiment",
+      "route": "/?lesson=agent-runtime-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "bad-evidence",
+      "role": "experiment",
+      "route": "/?scenario=bad-evidence",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "budget",
+      "role": "experiment",
+      "route": "/?scenario=budget",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "calculation",
+      "role": "experiment",
+      "route": "/?scenario=calculation",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "injection",
+      "role": "experiment",
+      "route": "/?scenario=injection",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "missing",
+      "role": "experiment",
+      "route": "/?scenario=missing",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "overflow",
+      "role": "experiment",
+      "route": "/?scenario=overflow",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "retry",
+      "role": "experiment",
+      "route": "/?scenario=retry",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "revenue",
+      "role": "experiment",
+      "route": "/?scenario=revenue",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "evidenceRefs": ["execution", "checks"],
+      "experimentId": "timeout",
+      "role": "experiment",
+      "route": "/?scenario=timeout",
+      "surface": "experiment"
+    },
+    {
+      "appId": "arl",
+      "conceptId": "concept:evidence-evaluation",
+      "lessonId": "agent-runtime-101",
+      "role": "experiment",
+      "route": "/?lesson=agent-runtime-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:capacity-planning",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "always",
+      "role": "experiment",
+      "route": "/?scenario=always",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:capacity-planning",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "batch",
+      "role": "experiment",
+      "route": "/?scenario=batch",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:capacity-planning",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "company",
+      "role": "experiment",
+      "route": "/?scenario=company",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:capacity-planning",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "personal",
+      "role": "experiment",
+      "route": "/?scenario=personal",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:capacity-planning",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "privacy",
+      "role": "experiment",
+      "route": "/?scenario=privacy",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:capacity-planning",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "startup",
+      "role": "experiment",
+      "route": "/?scenario=startup",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:capacity-planning",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "team70",
+      "role": "experiment",
+      "route": "/?scenario=team70",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:capacity-planning",
+      "lessonId": "deployment-101",
+      "role": "experiment",
+      "route": "/?lesson=deployment-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "always",
+      "role": "experiment",
+      "route": "/?scenario=always",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "batch",
+      "role": "experiment",
+      "route": "/?scenario=batch",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "company",
+      "role": "experiment",
+      "route": "/?scenario=company",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "personal",
+      "role": "experiment",
+      "route": "/?scenario=personal",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "privacy",
+      "role": "experiment",
+      "route": "/?scenario=privacy",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "startup",
+      "role": "experiment",
+      "route": "/?scenario=startup",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "team70",
+      "role": "experiment",
+      "route": "/?scenario=team70",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:concurrency",
+      "lessonId": "deployment-101",
+      "role": "experiment",
+      "route": "/?lesson=deployment-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:deployment-choice",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "always",
+      "role": "experiment",
+      "route": "/?scenario=always",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:deployment-choice",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "batch",
+      "role": "experiment",
+      "route": "/?scenario=batch",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:deployment-choice",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "company",
+      "role": "experiment",
+      "route": "/?scenario=company",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:deployment-choice",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "personal",
+      "role": "experiment",
+      "route": "/?scenario=personal",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:deployment-choice",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "privacy",
+      "role": "experiment",
+      "route": "/?scenario=privacy",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:deployment-choice",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "startup",
+      "role": "experiment",
+      "route": "/?scenario=startup",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:deployment-choice",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "team70",
+      "role": "experiment",
+      "route": "/?scenario=team70",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:deployment-choice",
+      "lessonId": "deployment-101",
+      "role": "experiment",
+      "route": "/?lesson=deployment-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "always",
+      "role": "experiment",
+      "route": "/?scenario=always",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "batch",
+      "role": "experiment",
+      "route": "/?scenario=batch",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "company",
+      "role": "experiment",
+      "route": "/?scenario=company",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "personal",
+      "role": "experiment",
+      "route": "/?scenario=personal",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "privacy",
+      "role": "experiment",
+      "route": "/?scenario=privacy",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "startup",
+      "role": "experiment",
+      "route": "/?scenario=startup",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "team70",
+      "role": "experiment",
+      "route": "/?scenario=team70",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:kv-cache",
+      "lessonId": "deployment-101",
+      "role": "experiment",
+      "route": "/?lesson=deployment-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:ownership-cost",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "always",
+      "role": "experiment",
+      "route": "/?scenario=always",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:ownership-cost",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "batch",
+      "role": "experiment",
+      "route": "/?scenario=batch",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:ownership-cost",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "company",
+      "role": "experiment",
+      "route": "/?scenario=company",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:ownership-cost",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "personal",
+      "role": "experiment",
+      "route": "/?scenario=personal",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:ownership-cost",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "privacy",
+      "role": "experiment",
+      "route": "/?scenario=privacy",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:ownership-cost",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "startup",
+      "role": "experiment",
+      "route": "/?scenario=startup",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:ownership-cost",
+      "evidenceRefs": ["defaults", "inputs", "results"],
+      "experimentId": "team70",
+      "role": "experiment",
+      "route": "/?scenario=team70",
+      "surface": "experiment"
+    },
+    {
+      "appId": "dcl",
+      "conceptId": "concept:ownership-cost",
+      "lessonId": "deployment-101",
+      "role": "experiment",
+      "route": "/?lesson=deployment-101",
+      "surface": "lesson"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:gpu-anatomy",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "anatomy",
+      "role": "experiment",
+      "route": "/gex/anatomy",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:gpu-memory",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "anatomy",
+      "role": "experiment",
+      "route": "/gex/anatomy",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:gpu-memory",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "memory",
+      "role": "experiment",
+      "route": "/gex/memory",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:gpu-memory",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "tensor",
+      "role": "experiment",
+      "route": "/gex/tensor",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:kernel-execution",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "kernel",
+      "role": "experiment",
+      "route": "/gex/kernel",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:kernel-execution",
+      "lessonId": "follow-a-kernel",
+      "role": "experiment",
+      "route": "/gex/kernel",
+      "surface": "lesson"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:kv-cache",
+      "depth": "advanced",
+      "description": {
+        "en": "GPU memory execution context for KV storage; this scene does not simulate attention or an exact serving kernel."
+      },
+      "evidenceRefs": ["conceptual-execution"],
+      "role": "dive-deeper",
+      "route": "/gex/memory",
+      "surface": "reference"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:simt",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "kernel",
+      "role": "experiment",
+      "route": "/gex/kernel",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:simt",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "sm",
+      "role": "experiment",
+      "route": "/gex/sm",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:simt",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "warp",
+      "role": "experiment",
+      "route": "/gex/warp",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:simt",
+      "lessonId": "follow-a-kernel",
+      "role": "experiment",
+      "route": "/gex/kernel",
+      "surface": "lesson"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:sm",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "sm",
+      "role": "experiment",
+      "route": "/gex/sm",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:tensor-compute",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "tensor",
+      "role": "experiment",
+      "route": "/gex/tensor",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gex",
+      "conceptId": "concept:warp-divergence",
+      "evidenceRefs": ["conceptual-execution", "numerical-reference"],
+      "experimentId": "warp",
+      "role": "experiment",
+      "route": "/gex/warp",
+      "surface": "experiment"
+    },
+    {
+      "appId": "gpu",
+      "conceptId": "concept:gpu-memory",
+      "primaryTheory": true,
+      "role": "learn-theory",
+      "route": "/",
+      "surface": "theory"
+    },
+    {
+      "appId": "llm",
+      "conceptId": "concept:decode",
+      "depth": "intro",
+      "primaryTheory": true,
+      "role": "learn-theory",
+      "route": "/en/learn/concepts/prefill-decode",
+      "surface": "theory"
+    },
+    {
+      "appId": "llm",
+      "conceptId": "concept:kv-cache",
+      "depth": "intro",
+      "primaryTheory": true,
+      "role": "learn-theory",
+      "route": "/en/learn/concepts/prefill-decode",
+      "surface": "theory"
+    },
+    {
+      "appId": "llm",
+      "conceptId": "concept:prefill",
+      "depth": "intro",
+      "primaryTheory": true,
+      "role": "learn-theory",
+      "route": "/en/learn/concepts/prefill-decode",
+      "surface": "theory"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "burst",
+      "role": "experiment",
+      "route": "/?experiment=burst",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "overload",
+      "role": "experiment",
+      "route": "/?experiment=overload",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "short",
+      "role": "experiment",
+      "route": "/?experiment=short",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:concurrency",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "steady",
+      "role": "experiment",
+      "route": "/?experiment=steady",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:context-window",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "long",
+      "role": "experiment",
+      "route": "/?experiment=long",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:decode",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "code",
+      "role": "experiment",
+      "route": "/?experiment=code",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:decode",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "single",
+      "role": "experiment",
+      "route": "/?experiment=single",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:decode",
+      "lessonId": "token-flow-101",
+      "role": "experiment",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "surface": "lesson"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:gpu-memory",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "kv",
+      "role": "experiment",
+      "route": "/?experiment=kv",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "code",
+      "role": "experiment",
+      "route": "/?experiment=code",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "kv",
+      "role": "experiment",
+      "route": "/?experiment=kv",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:kv-cache",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "long",
+      "role": "experiment",
+      "route": "/?experiment=long",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:kv-cache",
+      "lessonId": "token-flow-101",
+      "role": "experiment",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "surface": "lesson"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:prefill",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "long",
+      "role": "experiment",
+      "route": "/?experiment=long",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:prefill",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "single",
+      "role": "experiment",
+      "route": "/?experiment=single",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:prefill",
+      "lessonId": "token-flow-101",
+      "role": "experiment",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "surface": "lesson"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:prompt",
+      "lessonId": "token-flow-101",
+      "role": "experiment",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "surface": "lesson"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:scheduling",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "batching",
+      "role": "experiment",
+      "route": "/?experiment=batching",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:scheduling",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "burst",
+      "role": "experiment",
+      "route": "/?experiment=burst",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:scheduling",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "overload",
+      "role": "experiment",
+      "route": "/?experiment=overload",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:scheduling",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "short",
+      "role": "experiment",
+      "route": "/?experiment=short",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:scheduling",
+      "lessonId": "token-flow-101",
+      "role": "experiment",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "surface": "lesson"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:streaming",
+      "lessonId": "token-flow-101",
+      "role": "experiment",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "surface": "lesson"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:tokenization",
+      "lessonId": "token-flow-101",
+      "role": "experiment",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "surface": "lesson"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:ttft",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "batching",
+      "role": "experiment",
+      "route": "/?experiment=batching",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:ttft",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "single",
+      "role": "experiment",
+      "route": "/?experiment=single",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:ttft",
+      "evidenceRefs": ["simulated-events", "ttft"],
+      "experimentId": "steady",
+      "role": "experiment",
+      "route": "/?experiment=steady",
+      "surface": "experiment"
+    },
+    {
+      "appId": "tfl",
+      "conceptId": "concept:ttft",
+      "lessonId": "token-flow-101",
+      "role": "experiment",
+      "route": "/?lesson=token-flow-101&chapter=0",
+      "surface": "lesson"
+    }
+  ],
+  "version": "0.1"
+}

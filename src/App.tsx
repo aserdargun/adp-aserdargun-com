@@ -1,3 +1,5 @@
+import { deploymentLink, deploymentContext } from "./ils/handoff";
+import "./ils/handoff.css";
 import { LabShell, LabControlButton } from "@aserdargun/lab-ui";
 import "@aserdargun/lab-ui/styles.css";
 import { manifest, experiments, initialRoute } from "./ils/catalog";
@@ -626,7 +628,7 @@ function AppContent({
                 config={config}
                 updating={state?.current.type === "OPTIMIZER_STEP"}
               />
-              <MemoryPanel config={config} />
+              <MemoryPanel experimentId={scenario} config={config} />
             </>
           ) : (
             <div className="main-panel">
@@ -635,7 +637,11 @@ function AppContent({
               )}
               {tab === "memory" && (
                 <>
-                  <MemoryPanel config={config} expanded />
+                  <MemoryPanel
+                    experimentId={scenario}
+                    config={config}
+                    expanded
+                  />
                   <MethodComparison config={config} />
                 </>
               )}
@@ -746,6 +752,29 @@ function AppContent({
             </section>
           </>
         )}
+        <section
+          className="semantic-handoff"
+          aria-label={t("Continue learning", "Öğrenmeye devam")}
+        >
+          <strong>{t("Adapt → Deploy", "Uyarla → Dağıt")}</strong>
+          <p>
+            {deploymentContext(config, scenario)
+              ? t(
+                  "Carry the 7B / 14B model class, precision, sequence length and training memory estimate to DCL. DCL will ask you to create a separate inference comparison.",
+                  "7B / 14B model sınıfını, hassasiyeti, dizi uzunluğunu ve eğitim belleği tahminini DCL’ye taşıyın. DCL ayrı bir çıkarım karşılaştırması oluşturmanızı isteyecek.",
+                )
+              : t(
+                  "This handoff currently supports 7B and 14B profiles. Other sizes open DCL’s default comparison without transferring settings.",
+                  "Bu aktarım şu anda 7B ve 14B profillerini destekliyor. Diğer boyutlar ayar aktarmadan DCL’nin varsayılan karşılaştırmasını açar.",
+                )}
+          </p>
+          <a
+            data-testid="adp-to-dcl"
+            href={deploymentLink(config, scenario, lang)}
+          >
+            {t("Where can this run? → DCL", "Nerede çalışabilir? → DCL")}
+          </a>
+        </section>
         <LabShell
           manifest={manifest}
           experiment={experiments.find((e) => e.id === scenario)!}
