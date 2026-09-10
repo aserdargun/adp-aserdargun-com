@@ -56,9 +56,9 @@ Compute index = million training tokens × model/7B × method factor (Full FT 3,
 
 ## Release contract
 
-The scenario requires domain gain ≥8 points, format ≥80, held-out ≥65, retention drop ≤5 and no test leakage. Each clause is evaluated independently. A finished training checkpoint does not imply readiness. The result says only that a synthetic educational contract passed. Repeated inspection of these simulated test scores is a lesson; a real project needs a fresh final hold-out after development.
+The scenario requires domain gain ≥8 points, format ≥80, held-out ≥65, retention drop ≤5 and no test leakage. All six baseline and adapted scores must be present, numeric, finite and within 0–100. The integrity result must explicitly indicate no leakage. Each acceptance clause is evaluated independently. A finished training checkpoint does not imply readiness. The result says only that a synthetic educational contract passed. Repeated inspection of these simulated test scores is a lesson; a real project needs a fresh final hold-out after development.
 
-## Primary sources checked 2026-09-09
+## Primary sources checked 2026-09-10
 
 - Hu et al., [LoRA](https://arxiv.org/abs/2106.09685): low-rank trainable updates to frozen pretrained weights.
 - Dettmers et al., [QLoRA](https://arxiv.org/abs/2305.14314): backpropagation through a frozen quantized base into higher-precision adapters.

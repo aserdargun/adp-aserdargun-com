@@ -103,7 +103,13 @@ export function createRun(
   };
 }
 export function replay(run: ExperimentRun, cursor: number) {
-  const end = Math.max(0, Math.min(run.events.length - 1, Math.floor(cursor)));
+  const end = Math.max(
+    0,
+    Math.min(
+      run.events.length - 1,
+      Number.isNaN(cursor) ? 0 : Math.floor(cursor),
+    ),
+  );
   const events = run.events.slice(0, end + 1),
     current = events.at(-1)!;
   const updates = events

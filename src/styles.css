@@ -854,7 +854,7 @@ input[type="checkbox"] {
   padding: 9px 12px;
   margin: 12px 0;
   position: sticky;
-  bottom: 10px;
+  top: 10px;
   z-index: 6;
   box-shadow: 0 3px 15px #18252b08;
 }
@@ -2738,4 +2738,71 @@ footer {
   border-radius: 4px;
   padding: 10px;
   margin-top: 9px;
+}
+
+/* Put experiment actions within reach before the long learning panels. */
+.run-progress {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  background: var(--light);
+  border: 1px solid #b2d8c9;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #176150;
+}
+.run-progress progress {
+  flex: 1 1 160px;
+  height: 8px;
+  accent-color: var(--teal);
+}
+.capacity-notice {
+  border-left: 3px solid var(--amber);
+  padding: 12px 16px;
+  background: #fff6e9;
+  color: #754611;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.table-scroll {
+  overscroll-behavior-x: contain;
+}
+@media (pointer: coarse) {
+  button,
+  select,
+  summary,
+  .languages button,
+  .tabs button,
+  .toolbar button,
+  .experiment-bar button,
+  .chips button,
+  .lesson-actions button {
+    min-height: 44px;
+  }
+  input[type="range"] {
+    min-height: 28px;
+  }
+  .check {
+    min-height: 44px;
+  }
+}
+@media (max-width: 700px) {
+  .toolbar {
+    position: static;
+  }
+  .toolbar > div {
+    flex-wrap: wrap;
+  }
+  .toolbar button {
+    flex: 1 1 auto;
+  }
+  .run-progress {
+    font-size: 11px;
+  }
+  .config-panel select {
+    font-size: 12px;
+  }
 }

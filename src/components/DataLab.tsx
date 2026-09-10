@@ -25,6 +25,14 @@ export function DataLab({
   config: AdaptationConfig;
   change: (patch: Partial<AdaptationConfig>) => void;
 }) {
+  const splitName = (split: Sample["split"]) => {
+    const names = {
+      train: ["train", "eğitim"],
+      validation: ["validation", "doğrulama"],
+      test: ["test", "test"],
+    } as const;
+    return t(names[split][0], names[split][1]);
+  };
   const t = useT(),
     lang = useContext(LocaleContext),
     d = useMemo(() => prepareData(c), [c]),
@@ -60,11 +68,11 @@ export function DataLab({
         <div className="pipeline">
           {[
             t("Raw", "Ham"),
-            t("Filter", "Filtre"),
+            t("Split", "Ayır"),
+            t("Filter train", "Eğitimi filtrele"),
             t("Deduplicate", "Tekrarları sil"),
             t("Validate", "Doğrula"),
             t("Format", "Biçimle"),
-            t("Split", "Ayır"),
             t("Tokenize", "Tokenize et"),
           ].map((s, i) => (
             <span key={s}>
@@ -213,8 +221,8 @@ export function DataLab({
         <SectionTitle
           title={t("Sample inspector", "Örnek inceleyici")}
           detail={t(
-            "Representative fictional records, not real training data.",
-            "Temsili kurgusal kayıtlar; gerçek eğitim verisi değil.",
+            "Representative fictional records. Distinct case IDs do not establish semantic independence; these examples reuse authored question templates.",
+            "Temsili kurgusal kayıtlar. Ayrı vaka kimlikleri anlamsal bağımsızlık kanıtlamaz; bu örnekler kurgusal soru şablonlarını tekrar kullanır.",
           )}
         />
         <div className="chips">
@@ -237,7 +245,7 @@ export function DataLab({
                 onClick={() => setSelected(`${s.split}-${s.id}`)}
               >
                 <small>
-                  {s.split} · {s.id}
+                  {splitName(s.split)} · {s.id}
                 </small>
                 <b>{t(...flags[s.flag])}</b>
                 <span>{s.input[lang]}</span>
@@ -271,7 +279,7 @@ export function DataLab({
               )}
               <dl>
                 <dt>{t("Split", "Bölüm")}</dt>
-                <dd>{sample.split}</dd>
+                <dd>{splitName(sample.split)}</dd>
                 <dt>{t("Quality flags", "Kalite işaretleri")}</dt>
                 <dd>{t(...flags[sample.flag])}</dd>
                 <dt>
@@ -299,8 +307,8 @@ export function DataLab({
           )}
         </div>
         <div className="formula">
-          {d.train.length.toLocaleString("en-US")} × {d.averageTokens} ×{" "}
-          {c.epochs} = {fmt(w.tokenExposure)}{" "}
+          {d.train.length.toLocaleString(lang === "tr" ? "tr-TR" : "en-US")} ×{" "}
+          {d.averageTokens} × {c.epochs} = {fmt(w.tokenExposure)}{" "}
           {t("training-token exposures", "eğitim tokenı maruziyeti")}
         </div>
         <p>

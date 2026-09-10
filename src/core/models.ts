@@ -54,6 +54,8 @@ export const defaultConfig: AdaptationConfig = {
   seed: 42,
 };
 export function validateConfig(c: AdaptationConfig) {
+  if (!c || typeof c !== "object" || Array.isArray(c))
+    throw new Error("Invalid configuration");
   getModel(c.model);
   for (const key of [
     "checkpointing",
@@ -72,6 +74,7 @@ export function validateConfig(c: AdaptationConfig) {
   )
     throw new Error("Invalid selection");
   if (
+    !Array.isArray(c.targets) ||
     !ranks.includes(c.rank) ||
     !c.targets.length ||
     new Set(c.targets).size !== c.targets.length ||

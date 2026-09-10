@@ -59,6 +59,7 @@ export function ParameterWorld({
                 style={{
                   transform: `translateZ(${i * (c.method === "qlora" ? 19 : 28)}px)`,
                 }}
+                aria-pressed={layer === i + 1}
                 onClick={() => setLayer(i + 1)}
                 aria-label={t(
                   `Inspect representative block ${i + 1}`,

@@ -227,7 +227,7 @@ export function TrainingLab({
               />
             </div>
             <LossChart points={state.curve} epochs={c.epochs} />
-            {state.trainingComplete && (
+            {state.trainingComplete && !state.evaluated && (
               <div className="training-done">
                 <b>
                   {t(
@@ -256,7 +256,7 @@ export function TrainingLab({
                         e{e.epoch.toFixed(2)}
                         {e.microBatches ? ` · ${e.microBatches} μB` : ""}
                         {e.optimizerSteps
-                          ? ` · ${e.optimizerSteps} updates`
+                          ? ` · ${e.optimizerSteps} ${t("updates", "güncelleme")}`
                           : ""}
                       </span>
                     </li>
@@ -274,8 +274,8 @@ export function TrainingLab({
             </h3>
             <p>
               {t(
-                "Start or step the simulation using the toolbar below. Curves emerge from optimizer events.",
-                "Aşağıdaki araç çubuğuyla simülasyonu başlatın ya da adımlayın. Eğriler optimizer olaylarından oluşur.",
+                "Start or step the simulation using the toolbar above. Curves emerge from optimizer events.",
+                "Yukarıdaki araç çubuğuyla simülasyonu başlatın ya da adımlayın. Eğriler optimizer olaylarından oluşur.",
               )}
             </p>
           </div>

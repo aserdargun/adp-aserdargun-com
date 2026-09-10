@@ -5,6 +5,22 @@ import type {
   PreparedDataset,
   Scores,
 } from "./types";
+export const scoreKeys = [
+  "task",
+  "domain",
+  "instruction",
+  "format",
+  "heldOut",
+  "retention",
+] as const satisfies readonly (keyof Scores)[];
+export const baselineScores: Readonly<Scores> = Object.freeze({
+  task: 54,
+  domain: 48,
+  instruction: 70,
+  format: 72,
+  heldOut: 55,
+  retention: 82,
+});
 const clamp = (x: number) => Math.max(0, Math.min(100, x));
 export function seededNoise(seed: number, index: number) {
   let a = (seed ^ Math.imul(index + 1, 0x9e3779b9)) >>> 0;
@@ -58,12 +74,21 @@ export function checkContract(
 ) {
   const reasons: string[] = [];
   if (
-    [...Object.values(baseline), ...Object.values(adapted)].some(
-      (v) => !Number.isFinite(v) || v < 0 || v > 100,
+    [baseline, adapted].some((scores) =>
+      scoreKeys.some((key) => {
+        const value = scores?.[key];
+        return (
+          typeof value !== "number" ||
+          !Number.isFinite(value) ||
+          value < 0 ||
+          value > 100
+        );
+      }),
     )
   )
     reasons.push("invalidScores");
-  if (leakage) reasons.push("leakage");
+  if (leakage !== false) reasons.push("leakage");
+  if (reasons.includes("invalidScores")) return { pass: false, reasons };
   if (adapted.domain - baseline.domain < contract.minimumDomainGain)
     reasons.push("domain");
   if (adapted.format < contract.minimumFormat) reasons.push("format");
@@ -73,14 +98,7 @@ export function checkContract(
   return { pass: reasons.length === 0, reasons };
 }
 export function evaluate(c: AdaptationConfig, d: PreparedDataset): Evaluation {
-  const baseline: Scores = {
-    task: 54,
-    domain: 48,
-    instruction: 70,
-    format: 72,
-    heldOut: 55,
-    retention: 82,
-  };
+  const baseline: Scores = { ...baselineScores };
   const coverage = d.coverage.reduce((a, b) => a + b, 0) / 5;
   const exposure =
     1 - Math.exp(-c.epochs * (c.learningRate === "low" ? 0.08 : 0.8));

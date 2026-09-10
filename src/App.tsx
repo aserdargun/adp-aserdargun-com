@@ -16,10 +16,16 @@ import {
   X,
   Save,
 } from "lucide-react";
-import type { AdaptationConfig, ExperimentRun, Locale } from "./core/types";
+import type {
+  AdaptationConfig,
+  ExperimentRun,
+  Locale,
+  Text,
+} from "./core/types";
 import { defaultConfig, getModel } from "./core/models";
 import { parameters } from "./core/parameters";
 import { memory } from "./core/memory";
+import { restoreRuns, serializeRuns, runsStorageKey } from "./core/session";
 import { createRun, replay } from "./simulation/engine";
 import { lessons, scenarios } from "./lessons/lessons";
 import type { Tab } from "./lessons/lessons";
@@ -52,18 +58,14 @@ const tabs: Tab[] = [
   "evaluate",
   "compare",
 ];
-function readRuns(): ExperimentRun[] {
+function readRuns() {
   try {
-    const saved = JSON.parse(sessionStorage.getItem("adp-runs-v1") ?? "[]");
-    if (!Array.isArray(saved)) return [];
-    return saved
-      .slice(0, 3)
-      .filter(
-        (r) => r?.version === "adp-core-1" && /^ADP-RUN-\d{3,}$/.test(r.id),
-      )
-      .map((r) => createRun(r.config, r.id));
+    return {
+      ...restoreRuns(sessionStorage.getItem(runsStorageKey)),
+      unavailable: false,
+    };
   } catch {
-    return [];
+    return { runs: [], rejected: 0, unavailable: true };
   }
 }
 function AppContent({
@@ -74,7 +76,7 @@ function AppContent({
   setLang: (lang: Locale) => void;
 }) {
   const t = useT();
-  const [config, setConfig] = useState<AdaptationConfig>(
+  const [config, setConfig] = useState<AdaptationConfig>(() =>
     structuredClone(defaultConfig),
   );
   const [tab, setTab] = useState<Tab>(() =>
@@ -82,19 +84,24 @@ function AppContent({
       ? (location.hash.slice(1) as Tab)
       : "adapt",
   );
+  const [restored] = useState(readRuns);
   const [run, setRun] = useState<ExperimentRun | null>(null),
     [cursor, setCursor] = useState(0),
     [playing, setPlaying] = useState(false),
-    [runs, setRuns] = useState<ExperimentRun[]>(readRuns);
+    [runs, setRuns] = useState<ExperimentRun[]>(restored.runs);
   const nextId = useRef(
     Math.max(0, ...runs.map((r) => +r.id.split("-").at(-1)!)) + 1,
   );
   const [lesson, setLesson] = useState<number | null>(null),
     [scenario, setScenario] = useState("domain"),
-    [notice, setNotice] = useState("");
-  const state = run ? replay(run, cursor) : null,
-    p = parameters(config),
-    m = memory(config),
+    [notice, setNotice] = useState<Text | null>(null);
+  const message = (en: string, tr: string): Text => ({ en, tr });
+  const state = useMemo(
+      () => (run ? replay(run, cursor) : null),
+      [run, cursor],
+    ),
+    p = useMemo(() => parameters(config), [config]),
+    m = useMemo(() => memory(config), [config]),
     model = getModel(config.model);
   const destination = links(lang);
   const labels = [
@@ -116,20 +123,26 @@ function AppContent({
     Scale,
   ];
   function navigate(next: Tab) {
+    if (next === tab) return;
     setTab(next);
-    history.replaceState(
+    history.pushState(
       null,
       "",
       `${location.pathname}${location.search}#${next}`,
     );
   }
   function change(patch: Partial<AdaptationConfig>) {
-    setConfig((c) => ({ ...c, ...patch }));
+    const next = { ...config, ...patch };
+    const signature = (c: AdaptationConfig) =>
+      JSON.stringify({ ...c, targets: [...c.targets].sort() });
+    if (signature(next) === signature(config)) return;
+    setConfig(next);
+    setScenario("custom");
     setPlaying(false);
     setRun(null);
     setCursor(0);
     setNotice(
-      t(
+      message(
         "Configuration changed · start a new simulation.",
         "Yapılandırma değişti · yeni simülasyon başlatın.",
       ),
@@ -142,7 +155,7 @@ function AppContent({
     );
     setRun(r);
     setCursor(0);
-    setNotice("");
+    setNotice(null);
     return r;
   }
   function start() {
@@ -155,7 +168,7 @@ function AppContent({
     }
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setNotice(
-        t(
+        message(
           "Reduced motion: use Step or Complete training.",
           "Azaltılmış hareket: Adım veya Eğitimi tamamla kullanın.",
         ),
@@ -169,6 +182,7 @@ function AppContent({
       makeRun();
       return;
     }
+    if (state?.trainingComplete) return;
     setCursor((i) => Math.min(i + 1, run.events.length - 1));
   }
   function finishTraining() {
@@ -189,13 +203,15 @@ function AppContent({
   function save() {
     if (!run || !state?.evaluated) return;
     if (runs.some((r) => r.id === run.id)) {
-      setNotice(t("This run is already saved.", "Bu deney zaten kayıtlı."));
+      setNotice(
+        message("This run is already saved.", "Bu deney zaten kayıtlı."),
+      );
       navigate("compare");
       return;
     }
     if (runs.length === 3) {
       setNotice(
-        t(
+        message(
           "Three runs saved. Remove one to save another.",
           "Üç deney kayıtlı. Yenisini kaydetmek için birini kaldırın.",
         ),
@@ -204,7 +220,7 @@ function AppContent({
       return;
     }
     setRuns((rs) => [...rs, structuredClone(run)]);
-    setNotice(`${run.id} ${t("saved", "kaydedildi")}`);
+    setNotice(message(`${run.id} saved`, `${run.id} kaydedildi`));
     navigate("compare");
   }
   function reset() {
@@ -212,7 +228,7 @@ function AppContent({
     setCursor(0);
     if (run) setRun(createRun(run.config, run.id));
     setNotice(
-      t(
+      message(
         "Reset to the start of this configuration.",
         "Bu yapılandırmanın başlangıcına dönüldü.",
       ),
@@ -227,33 +243,34 @@ function AppContent({
   }
   useEffect(() => {
     try {
-      sessionStorage.setItem("adp-runs-v1", JSON.stringify(runs));
+      sessionStorage.setItem(runsStorageKey, serializeRuns(runs));
     } catch {
       setNotice(
-        t(
+        message(
           "Storage unavailable; runs remain available until reload.",
           "Depolama kullanılamıyor; deneyler sayfa yenilenene kadar tutulur.",
         ),
       );
     }
-  }, [runs, lang]);
+  }, [runs]);
   useEffect(() => {
     if (!playing || !run) return;
     const id = setInterval(
       () =>
         setCursor((i) => {
-          const next = Math.min(i + 1, run.events.length - 1);
-          if (
-            run.events[next].type === "CHECKPOINT_SAVED" ||
-            next === run.events.length - 1
-          )
-            setPlaying(false);
+          const next = Math.min(
+            i + 1,
+            run.events.findIndex((event) => event.type === "CHECKPOINT_SAVED"),
+          );
           return next;
         }),
       110,
     );
     return () => clearInterval(id);
   }, [playing, run]);
+  useEffect(() => {
+    if (state?.trainingComplete) setPlaying(false);
+  }, [state?.trainingComplete]);
   useEffect(() => {
     const hidden = () => {
       if (document.hidden) setPlaying(false);
@@ -263,6 +280,7 @@ function AppContent({
   }, []);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.repeat) return;
       const el = e.target as HTMLElement;
       if (
         el.closest("input,select,textarea,button,a,summary,[contenteditable]")
@@ -284,6 +302,7 @@ function AppContent({
     const onHash = () => {
       const value = location.hash.slice(1) as Tab;
       if (tabs.includes(value)) setTab(value);
+      else if (!value) setTab("adapt");
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
@@ -327,7 +346,14 @@ function AppContent({
         {t("Skip to laboratory", "Laboratuvara geç")}
       </a>
       <header className="site-header">
-        <a className="brand" href="#adapt" onClick={() => navigate("adapt")}>
+        <a
+          className="brand"
+          href="#adapt"
+          onClick={(event) => {
+            event.preventDefault();
+            navigate("adapt");
+          }}
+        >
           <span className="brand-mark">ADP</span>
           <span>
             <b>ADP</b>
@@ -356,7 +382,7 @@ function AppContent({
           </div>
         </div>
       </header>
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <div className="intro">
           <h1>
             {t(
@@ -379,11 +405,17 @@ function AppContent({
               value={scenario}
               onChange={(e) => {
                 const s = scenarios.find((s) => s.id === e.target.value)!;
-                setScenario(s.id);
                 change({ ...structuredClone(defaultConfig), ...s.patch });
+                setScenario(s.id);
+                setLesson(null);
                 navigate(s.tab);
               }}
             >
+              {scenario === "custom" && (
+                <option value="custom" disabled>
+                  {t("Custom experiment", "Özel deney")}
+                </option>
+              )}
               {scenarios.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.name[lang]}
@@ -457,6 +489,110 @@ function AppContent({
             );
           })}
         </nav>
+        <div className="toolbar">
+          <div>
+            <button
+              className="primary"
+              onClick={start}
+              disabled={Boolean(state?.trainingComplete && !state?.complete)}
+            >
+              {playing ? <Pause size={16} /> : <Play size={16} />}{" "}
+              {playing
+                ? t("Pause", "Duraklat")
+                : run && !state?.complete
+                  ? t("Play", "Oynat")
+                  : t("Start simulation", "Simülasyonu başlat")}
+            </button>
+            <button onClick={step} disabled={state?.trainingComplete}>
+              <StepForward size={16} />
+              {t("Step", "Adım")}
+            </button>
+            <button onClick={reset}>
+              <RotateCcw size={15} />
+              {t("Reset", "Sıfırla")}
+            </button>
+            {!state?.trainingComplete && (
+              <button onClick={finishTraining}>
+                {t("Complete training", "Eğitimi tamamla")}
+              </button>
+            )}
+            {state?.trainingComplete && !state?.evaluated && (
+              <button className="primary" onClick={doEvaluate}>
+                {t("Evaluate checkpoint", "Kontrol noktasını değerlendir")}
+              </button>
+            )}
+            {state?.evaluated && (
+              <button onClick={save}>
+                <Save size={16} />
+                {t("Save run", "Deneyi kaydet")}
+              </button>
+            )}
+          </div>
+          <span className="run-status">
+            {run?.id ?? t("No active run", "Etkin deney yok")} ·{" "}
+            {t("Synthetic", "Sentetik")} · {t("seed", "tohum")} {config.seed}
+            {state && ` · t${cursor}`}
+          </span>
+        </div>
+        {notice && (
+          <p className="notice" role="status">
+            {notice[lang]}
+          </p>
+        )}
+        {(restored.rejected > 0 || restored.unavailable) && (
+          <p className="notice" role="status">
+            {restored.unavailable
+              ? t(
+                  "Session storage is unavailable. Export your saved experiments before reloading.",
+                  "Oturum depolaması kullanılamıyor. Yenilemeden önce kayıtlı deneylerinizi dışa aktarın.",
+                )
+              : t(
+                  `${restored.rejected} damaged or unsupported saved record(s) skipped. Valid experiments were recovered.`,
+                  `${restored.rejected} bozuk veya desteklenmeyen kayıt atlandı. Geçerli deneyler kurtarıldı.`,
+                )}
+          </p>
+        )}
+        {run && (
+          <div
+            className="run-progress"
+            aria-label={t("Simulation progress", "Simülasyon ilerlemesi")}
+          >
+            <progress
+              max={run.optimizerSteps}
+              value={state?.updates ?? 0}
+              aria-label={t(
+                "Completed optimizer steps",
+                "Tamamlanan optimizer adımları",
+              )}
+            />
+            <span>
+              {state?.evaluated
+                ? t(
+                    "Evaluated · ready to save",
+                    "Değerlendirildi · kaydedilebilir",
+                  )
+                : state?.trainingComplete
+                  ? t(
+                      "Training complete · evaluation required",
+                      "Eğitim tamamlandı · değerlendirme gerekli",
+                    )
+                  : t("Training simulation", "Eğitim simülasyonu")}{" "}
+              · {state?.updates ?? 0} / {run.optimizerSteps}
+            </span>
+          </div>
+        )}
+        {!m.fits && (
+          <p className="capacity-notice">
+            <b>
+              {t("Exceeds device memory", "Cihaz belleğini aşıyor")}:{" "}
+              {m.giB.toFixed(1)} / {config.deviceGiB} GiB.
+            </b>{" "}
+            {t(
+              "You can explore the synthetic simulation; this workload does not fit the selected device estimate.",
+              "Sentetik simülasyonu inceleyebilirsiniz; bu iş yükü seçilen cihazın bellek tahminine sığmıyor.",
+            )}
+          </p>
+        )}
         <div
           className={`workbench ${tab === "adapt" ? "overview" : ""} ${tab === "compare" ? "compare-mode" : ""}`}
         >
@@ -492,6 +628,7 @@ function AppContent({
               )}
               {tab === "evaluate" && (
                 <EvaluationLab
+                  config={config}
                   run={run}
                   cursor={cursor}
                   onEvaluate={doEvaluate}
@@ -527,56 +664,6 @@ function AppContent({
             }
           />
         </div>
-        <div className="toolbar">
-          <div>
-            <button
-              className="primary"
-              onClick={start}
-              disabled={Boolean(state?.trainingComplete && !state?.complete)}
-            >
-              {playing ? <Pause size={16} /> : <Play size={16} />}{" "}
-              {playing
-                ? t("Pause", "Duraklat")
-                : run && !state?.complete
-                  ? t("Play", "Oynat")
-                  : t("Start simulation", "Simülasyonu başlat")}
-            </button>
-            <button onClick={step} disabled={state?.complete}>
-              <StepForward size={16} />
-              {t("Step", "Adım")}
-            </button>
-            <button onClick={reset}>
-              <RotateCcw size={15} />
-              {t("Reset", "Sıfırla")}
-            </button>
-            {!state?.trainingComplete && (
-              <button onClick={finishTraining}>
-                {t("Complete training", "Eğitimi tamamla")}
-              </button>
-            )}
-            {state?.trainingComplete && !state?.evaluated && (
-              <button className="primary" onClick={doEvaluate}>
-                {t("Evaluate checkpoint", "Kontrol noktasını değerlendir")}
-              </button>
-            )}
-            {state?.evaluated && (
-              <button onClick={save}>
-                <Save size={16} />
-                {t("Save run", "Deneyi kaydet")}
-              </button>
-            )}
-          </div>
-          <span className="run-status">
-            {run?.id ?? t("No active run", "Etkin deney yok")} ·{" "}
-            {t("Synthetic", "Sentetik")} · {t("seed", "tohum")} {config.seed}
-            {state && ` · t${cursor}`}
-          </span>
-        </div>
-        {notice && (
-          <p className="notice" role="status">
-            {notice}
-          </p>
-        )}
         {tab === "adapt" && (
           <>
             <MethodComparison config={config} />
@@ -660,8 +747,8 @@ function AppContent({
           <p>
             <Badge kind="verified" />{" "}
             {t(
-              "Primary sources checked 2026-09-09. Sources support concepts, not the simulator’s numbers.",
-              "Birincil kaynaklar 2026-09-09 tarihinde kontrol edildi. Kaynaklar kavramları destekler; simülatör sayılarını değil.",
+              "Primary sources checked 2026-09-10. Sources support concepts, not the simulator’s numbers.",
+              "Birincil kaynaklar 2026-09-10 tarihinde kontrol edildi. Kaynaklar kavramları destekler; simülatör sayılarını değil.",
             )}
           </p>
           <div className="source-links">
@@ -739,6 +826,14 @@ export default function App() {
       return "en";
     }
   });
+  useEffect(() => {
+    const syncLocale = () => {
+      const value = new URLSearchParams(location.search).get("lang");
+      if (value === "en" || value === "tr") setLang(value);
+    };
+    window.addEventListener("popstate", syncLocale);
+    return () => window.removeEventListener("popstate", syncLocale);
+  }, []);
   useEffect(() => {
     document.documentElement.lang = lang;
     document.title =

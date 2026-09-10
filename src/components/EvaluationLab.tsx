@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { CheckCircle2, XCircle, LockKeyhole } from "lucide-react";
-import type { ExperimentRun, Scores } from "../core/types";
+import type { AdaptationConfig, ExperimentRun, Scores } from "../core/types";
 import { replay } from "../simulation/engine";
-import { contract } from "../core/evaluation";
+import { baselineScores, contract } from "../core/evaluation";
 import { SectionTitle, LocaleContext, External, Note, Badge, useT } from "./ui";
 import { links } from "../integrations/links";
 export const scoreNames: Record<keyof Scores, [string, string]> = {
@@ -14,11 +14,13 @@ export const scoreNames: Record<keyof Scores, [string, string]> = {
   retention: ["Out-of-domain retention", "Alan dışı yetenek koruma"],
 };
 export function EvaluationLab({
+  config,
   run,
   cursor,
   onEvaluate,
   onSave,
 }: {
+  config: AdaptationConfig;
   run: ExperimentRun | null;
   cursor: number;
   onEvaluate: () => void;
@@ -28,14 +30,7 @@ export function EvaluationLab({
     lang = useContext(LocaleContext),
     state = run ? replay(run, cursor) : null,
     e = run?.evaluation;
-  const baseline = e?.baseline ?? {
-    task: 54,
-    domain: 48,
-    instruction: 70,
-    format: 72,
-    heldOut: 55,
-    retention: 82,
-  };
+  const baseline = e?.baseline ?? baselineScores;
   const evaluated = Boolean(state?.evaluated);
   const reasons: Record<string, string> = {
     invalidScores: t(
@@ -249,7 +244,7 @@ export function EvaluationLab({
         <SectionTitle title={t("What is the artifact?", "Çıktı nedir?")} />
         <Badge kind="synthetic" />
         <div className="artifact-equation">
-          {run?.config.method === "full"
+          {config.method === "full"
             ? t(
                 "Updated full weights → adapted model",
                 "Güncellenmiş tam ağırlıklar → uyarlanmış model",

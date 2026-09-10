@@ -8,7 +8,7 @@ Public repository: [aserdargun/adp-aserdargun-com](https://github.com/aserdargun
 
 Azure production endpoint: [Model Adaptation Laboratory](https://polite-water-0a760bd03.3.azurestaticapps.net). Pushes to `main` run validation and publish the verified static artifact through GitHub Actions. See [deployment contract](docs/deployment.md).
 
-Intended future domain: `adp.aserdargun.com`; no custom domain is configured by this release.
+Custom domain: [adp.aserdargun.com](https://adp.aserdargun.com), bound to the same Azure app. This workflow publishes content; it does not manage DNS.
 
 ## Run
 
@@ -28,7 +28,7 @@ npm run build
 npm run format:check
 ```
 
-`npm run validate` runs type checking, 36 unit tests and the production build. `dist/` contains the static app, bundled fonts, model specification and Azure routing/security headers. No runtime API, credentials, external fonts, GPU or backend is required.
+`npm run validate` runs type checking, 53 unit tests and the production build. `dist/` contains the static app, bundled fonts, model specification and Azure routing/security headers. No runtime API, credentials, external fonts, GPU or backend is required.
 
 ## Experience
 
@@ -38,11 +38,13 @@ npm run format:check
 - **Data:** clean small, noisy large, narrow and mixed-domain profiles; independent quality dimensions; training-only filters, representative sample inspector, split integrity and deliberate leakage.
 - **Train:** deterministic seeded events, pause/step/reset, full-workload completion shortcut, synthetic loss curves and explicit overfitting. Playback pauses at the checkpoint so evaluation is a separate action.
 - **Evaluate:** a fixed stored baseline and six dimensions; a fail-closed scenario contract for domain gain, format, held-out behavior, retention and leakage. A synthetic pass is not a real model release.
-- **Compare:** up to three immutable session snapshots, preserved on reload; full reproducible JSON export. A setting change invalidates the active run, never a saved snapshot.
+- **Compare:** up to three immutable session snapshots, preserved on reload; full reproducible JSON export. A setting change invalidates the active run, never a saved snapshot. Selecting the same setting preserves the active run. Corrupt session entries are isolated so valid experiments can still be recovered.
 
 **Adaptation 101** provides ten chapters. Five experiment presets cover domain QA, data quality, overfitting, memory constraint and rank. USL, DCL, TFL, GEX and EVL links appear at the relevant decision stages. No configuration or telemetry is silently sent to those applications.
 
-Keyboard: native controls, visible focus, Space for play/pause and Right Arrow for step outside editable/interactive elements. A hidden tab pauses playback. Reduced-motion users start paused and can step or complete the simulation directly. On mobile, controls precede the result; tables scroll within their containers.
+The simulation toolbar precedes the learning panels, with progress and a separate device-capacity notice. Browser back/forward restores laboratory modes. Comparison includes learning rate, data filters, leakage, device fit and checkpointing. Versioned configurations are stored compactly and reconstruct the same deterministic snapshots on reload; JSON export still includes full events, curves and results.
+
+Keyboard: native controls, visible focus, Space for play/pause and Right Arrow for step outside editable/interactive elements. Stepping stops at the training checkpoint until explicit evaluation; modified browser shortcuts remain available. A hidden tab pauses playback. Reduced-motion users start paused and can step or complete the simulation directly. On mobile, controls precede the result; tables scroll within their containers.
 
 ## Scientific boundary
 
@@ -64,4 +66,4 @@ The run format is versioned `adp-core-1`. Real training traces, framework adapte
 
 ## Türkçe
 
-ADP, model uyarlama kararlarını görünür kılan bir eğitim laboratuvarıdır. Full FT, LoRA ve QLoRA arasındaki parametre ve bellek farklarını hesaplar; veri temizleme, eğitim döngüsü, aşırı uyum, başlangıç karşılaştırması ve değerlendirme kapısını birleştirir. Tüm arayüz EN/TR destekler. Simülasyon sonuçları gerçek benchmark değildir. `npm run dev` ile yerelde çalışır; `main` dalı GitHub Actions üzerinden Azure Free ortamına yayımlanır. Özel alan adı bu yayının kapsamında değildir.
+ADP, model uyarlama kararlarını görünür kılan bir eğitim laboratuvarıdır. Full FT, LoRA ve QLoRA arasındaki parametre ve bellek farklarını hesaplar; veri temizleme, eğitim döngüsü, aşırı uyum, başlangıç karşılaştırması ve değerlendirme kapısını birleştirir. Tüm arayüz EN/TR destekler. Simülasyon sonuçları gerçek benchmark değildir. `npm run dev` ile yerelde çalışır; `main` dalı GitHub Actions üzerinden Azure Free ortamına yayımlanır. Uygulama `adp.aserdargun.com` adresinden de erişilebilir; yayın iş akışı DNS yönetmez.

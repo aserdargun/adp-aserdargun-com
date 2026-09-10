@@ -37,7 +37,11 @@ export function CompareLab({
 }) {
   const t = useT(),
     lang = useContext(LocaleContext);
-  const [exportJson, setExportJson] = useState("");
+  const [exported, setExported] = useState<{
+    runs: ExperimentRun[];
+    json: string;
+  } | null>(null);
+  const exportJson = exported?.runs === runs ? exported.json : "";
   return (
     <section className="panel">
       <SectionTitle
@@ -65,7 +69,7 @@ export function CompareLab({
         </div>
       ) : (
         <>
-          <button onClick={() => setExportJson(exportRuns(runs))}>
+          <button onClick={() => setExported({ runs, json: exportRuns(runs) })}>
             <Download size={16} />
             {t("Export reproducible JSON", "Tekrarlanabilir JSON dışa aktar")}
           </button>
@@ -103,7 +107,10 @@ export function CompareLab({
                       <button
                         className="icon-button"
                         aria-label={`${t("Remove", "Kaldır")} ${r.id}`}
-                        onClick={() => remove(r.id)}
+                        onClick={() => {
+                          setExported(null);
+                          remove(r.id);
+                        }}
                       >
                         <Trash2 size={14} />
                       </button>
@@ -117,7 +124,7 @@ export function CompareLab({
                     t("Configuration", "Yapılandırma"),
                     ...runs.map(
                       (r) =>
-                        `${r.config.model.toUpperCase()} / ${methodName(r.config.method)} / r=${r.config.rank} / ${r.config.targets.join("+")}`,
+                        `${r.config.model.toUpperCase()} / ${methodName(r.config.method)}${r.config.method === "full" ? "" : ` / r=${r.config.rank} / ${r.config.targets.join("+")}`}`,
                     ),
                   ],
                   [
@@ -134,6 +141,64 @@ export function CompareLab({
                     ...runs.map(
                       (r) =>
                         `${r.config.epochs} ep · μB ${r.config.microBatch} × ${r.config.accumulation} · S=${r.config.sequence} · ${r.config.precision}`,
+                    ),
+                  ],
+                  [
+                    t("Learning rate", "Öğrenme oranı"),
+                    ...runs.map((r) =>
+                      r.config.learningRate === "low"
+                        ? t("Too low", "Çok düşük")
+                        : r.config.learningRate === "high"
+                          ? t("Too high", "Çok yüksek")
+                          : t("Reasonable (synthetic)", "Makul (sentetik)"),
+                    ),
+                  ],
+                  [
+                    t("Data preparation", "Veri hazırlama"),
+                    ...runs.map(
+                      (r) =>
+                        `${r.config.duplicates}% ${t("duplicates", "tekrar")} · ${
+                          [
+                            r.config.deduplicate &&
+                              t("deduplicated", "tekrarlar kaldırıldı"),
+                            r.config.qualityFilter &&
+                              t("quality filter", "kalite filtresi"),
+                            r.config.contradictionFilter &&
+                              t("contradiction filter", "çelişki filtresi"),
+                          ]
+                            .filter(Boolean)
+                            .join(" + ") || t("no filters", "filtre yok")
+                        }`,
+                    ),
+                  ],
+                  [
+                    t("Train / test integrity", "Eğitim / test bütünlüğü"),
+                    ...runs.map((r) =>
+                      r.config.leakage
+                        ? t(
+                            "LEAKAGE · invalid evaluation",
+                            "SIZINTI · geçersiz değerlendirme",
+                          )
+                        : t("Disjoint identities", "Ayrı kimlikler"),
+                    ),
+                  ],
+                  [
+                    t("Prepared train rows", "Hazırlanan eğitim satırı"),
+                    ...runs.map((r) => fmt(r.trainExamples)),
+                  ],
+                  [
+                    t("Device / memory fit", "Cihaz / belleğe sığma"),
+                    ...runs.map(
+                      (r) =>
+                        `${r.config.deviceGiB} GiB · ${memory(r.config).fits ? t("fits estimate", "tahmine sığıyor") : t("EXCEEDS CAPACITY", "KAPASİTE AŞIMI")}`,
+                    ),
+                  ],
+                  [
+                    t("Gradient checkpointing", "Gradyan kontrol noktaları"),
+                    ...runs.map((r) =>
+                      r.config.checkpointing
+                        ? t("On", "Açık")
+                        : t("Off", "Kapalı"),
                     ),
                   ],
                   [
