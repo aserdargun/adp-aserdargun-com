@@ -2741,6 +2741,25 @@ footer {
 }
 
 /* Put experiment actions within reach before the long learning panels. */
+.learning-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 10px;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+.learning-path a {
+  color: var(--teal);
+  text-underline-offset: 3px;
+}
+.intro .intro-boundary {
+  max-width: 850px;
+  margin: 8px auto 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
 .run-progress {
   display: flex;
   align-items: center;

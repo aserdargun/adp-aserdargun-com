@@ -1,27 +1,25 @@
-# Ecosystem boundaries
+# Learning-system connections
 
-Inspected current local README/source conventions for root, USL, DCL, TFL, GEX and EVL before implementation. ADP follows the smaller companion pattern: Vite, React, TypeScript, bilingual content, deterministic browser simulation, evidence labels and a static artifact. Existing repositories were read only.
+ADP is the model adaptation laboratory in the [aserdargun.com AI Learning System](https://aserdargun.com/). USL owns the adaptation foundation; ADP makes parameter scope, memory assumptions, data preparation and synthetic evaluation inspectable. App ownership and navigation do not imply a shared runtime or trained model.
 
-## Foundation lifecycle
+## Routes and boundaries
 
-GPU (execution theory) → GEX (execution experiments)
+| Connection           | Placement                                            | Contract                                                                                                                                                                                          |
+| -------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Root site            | Header, learning path and application map            | English `/`, `/journey/`, `/applications/`; Turkish `/tr/`, `/tr/journey/`, `/tr/applications/`.                                                                                                  |
+| USL                  | Method explanations, learning path and related links | `/en/learn/lora/` or `/tr/learn/lora/`; theory and research remain in USL.                                                                                                                        |
+| EVL                  | Evaluation contract and related links                | `/en/` or `/tr/`; ADP's synthetic pass is not an EVL evaluation.                                                                                                                                  |
+| DCL navigation       | Memory panel and related links                       | Root `?lang=en/tr`; no workload is transferred through these ordinary links.                                                                                                                      |
+| DCL workload handoff | Dedicated deployment-planning panel                  | Explicit link with validated `ils` metadata for 7B/14B profiles. Carries model class, adaptation method, base precision, sequence length, estimated training memory and source/return references. |
+| TFL                  | Artifact explanation and related links               | Root `?lang=en/tr`; explores model serving, not training or automatic publication.                                                                                                                |
+| GEX                  | Training explanation and related links               | `/gex/tensor?lang=en/tr`; GPU execution remains in GEX.                                                                                                                                           |
 
-LLM (serving research) → TFL (serving experiments)
+The shared shell's locale-specific links match the contextual links. Ordinary navigation carries language only. The dedicated DCL handoff opens in the same tab; contextual external links open a new tab with `noopener noreferrer` and accessible new-tab text. The header and learning path provide direct, localized access to the root site.
 
-USL (adaptation landscape) → ADP (adaptation experiments)
+DCL requires an explicit training-to-inference comparison. It does not reuse training memory as inference memory. Unsupported model sizes open the ordinary DCL comparison without an `ils` payload. No weights, dataset records, scores, traces, credentials or telemetry are transferred. A return link identifies the source experiment; it does not restore exact custom settings. See [the cross-lab contract](CROSS-LAB-HANDOFF.md).
 
-Base → adapt → evaluate → deploy → serve → execute.
+## Source and verification scope
 
-| Connection | Placement                             | Contract                                                                                             |
-| ---------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| USL        | Method explanation and parameter lab  | Locale-specific `/en/learn/lora/` or `/tr/learn/lora/`; frameworks and research remain in USL.       |
-| DCL        | Memory plan                           | Intended root `?lang=en/tr`; no workload payload, cost conversion or training launch is implemented. |
-| TFL        | Artifact / evaluation stage           | Root `?lang=en/tr`; teaches serving, not training.                                                   |
-| GEX        | Forward/backward lesson and lifecycle | `/gex/tensor?lang=en/tr`; GPU execution stays in GEX.                                                |
-| EVL        | Scenario release contract             | `/en/` or `/tr/`; ADP's synthetic pass is not a real EVL evaluation.                                 |
+Reviewed against current local app routes and the root catalog on 2026-09-21. HTTPS requests returned 200 for the root EN/TR pages, ADP, USL EN/TR LoRA routes, EVL EN/TR routes, DCL, TFL and the GEX tensor route. HTTP availability alone does not prove client-side locale selection or end-to-end handoff behavior. The older 2026-09-09 DCL DNS caveat is historical; it is not the current result of this check.
 
-All external links use `_blank` and `noopener noreferrer`, with accessible new-tab text. Links carry language preference only. There is no shared telemetry, adapter registry or cross-app state promise.
-
-## Verification on 2026-09-09
-
-HTTPS requests returned 200 for USL `/en/learn/lora/`, TFL root, GEX `/gex/tensor` and EVL `/en/`. Paths were also checked against existing local sources. DCL's requested hostname did not resolve from this machine; its link remains the user-specified intended destination and is not claimed live. Browser link attributes and contextual placement were inspected in ADP. No Azure resource, DNS change or external publication was performed.
+This content review does not assert a new production release. Publication requires the independent workflow, release-manifest and live-browser checks in [deployment.md](deployment.md).

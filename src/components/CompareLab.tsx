@@ -94,8 +94,8 @@ export function CompareLab({
             <table>
               <caption>
                 {t(
-                  "Calculated resources + synthetic evaluation",
-                  "Hesaplanan kaynaklar + sentetik değerlendirme",
+                  "Calculated parameters + estimated memory + synthetic evaluation",
+                  "Hesaplanan parametreler + tahmini bellek + sentetik değerlendirme",
                 )}
               </caption>
               <thead>

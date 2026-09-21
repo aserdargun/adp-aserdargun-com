@@ -28,7 +28,7 @@ npm run build
 npm run format:check
 ```
 
-`npm run validate` runs type checking, 53 unit tests and the production build. `dist/` contains the static app, bundled fonts, model specification and Azure routing/security headers. No runtime API, credentials, external fonts, GPU or backend is required.
+`npm run validate` runs type checking, all unit tests and the production build. `dist/` contains the static app, bundled fonts, model specification and Azure routing/security headers. No runtime API, credentials, external fonts, GPU or backend is required.
 
 ## Experience
 
@@ -40,7 +40,7 @@ npm run format:check
 - **Evaluate:** a fixed stored baseline and six dimensions; a fail-closed scenario contract for domain gain, format, held-out behavior, retention and leakage. A synthetic pass is not a real model release.
 - **Compare:** up to three immutable session snapshots, preserved on reload; full reproducible JSON export. A setting change invalidates the active run, never a saved snapshot. Selecting the same setting preserves the active run. Corrupt session entries are isolated so valid experiments can still be recovered.
 
-**Adaptation 101** provides ten chapters. Five experiment presets cover domain QA, data quality, overfitting, memory constraint and rank. USL, DCL, TFL, GEX and EVL links appear at the relevant decision stages. No configuration or telemetry is silently sent to those applications.
+**Adaptation 101** provides ten chapters. Five experiment presets cover domain QA, data quality, overfitting, memory constraint and rank. USL, DCL, TFL, GEX and EVL links appear at the relevant decision stages. Ordinary links carry language only. The explicit DCL handoff carries a bounded educational workload in the URL for 7B/14B profiles; it sends no weights, datasets, scores or telemetry. DCL requires a separate inference comparison.
 
 The simulation toolbar precedes the learning panels, with progress and a separate device-capacity notice. Browser back/forward restores laboratory modes. Comparison includes learning rate, data filters, leakage, device fit and checkpointing. Versioned configurations are stored compactly and reconstruct the same deterministic snapshots on reload; JSON export still includes full events, curves and results.
 
@@ -50,7 +50,7 @@ Keyboard: native controls, visible focus, Space for play/pause and Right Arrow f
 
 **No foundation model is trained.** Calculated parameter counts use documented generic profiles. Memory is an estimate; curves, scores, events and compute units are authored synthetic behavior. Model sizes and rank do not predict real quality. There is no real tokenizer, measured benchmark, trained checkpoint or dollar-cost model. The JSON export contains simulation data, not model weights.
 
-See [educational model and formulas](docs/educational-model.md), [integration contracts](docs/integrations.md), [QA and combined review](docs/qa.md), and [design reference](docs/design/concept.png).
+See [educational model and formulas](docs/educational-model.md), [Türkçe model tanımı](docs/educational-model.tr.md), [integration contracts](docs/integrations.md), [QA and combined review](docs/qa.md), and [design reference](docs/design/concept.png).
 
 ## Architecture
 
@@ -59,7 +59,8 @@ See [educational model and formulas](docs/educational-model.md), [integration co
 - `src/visualization/`: bounded CSS 3D structural model; no billions-of-parameters geometry or WebGL dependency.
 - `src/components/`: bilingual controls, quantitative inspectors, 2D loss chart, dataset and evaluation views.
 - `src/lessons/`: ten guided chapters and five deterministic experiment presets.
-- `src/integrations/`: explicit links with language context only.
+- `src/integrations/`: locale-aware navigation to the root learning system and companion applications.
+- `src/ils/handoff.ts`: explicit, validated educational workload links to DCL.
 - `tests/`: independent numeric checks and scientific/state invariants.
 
 The run format is versioned `adp-core-1`. Real training traces, framework adapters, imported datasets, DPO, routing and distributed training are deliberately outside CORE. A future adapter must preserve provenance and distinguish measured metrics from these synthetic events; it must not silently reuse the synthetic scores.
@@ -70,4 +71,4 @@ ADP, model uyarlama kararlarını görünür kılan bir eğitim laboratuvarıdı
 
 ## ILS v0.1
 
-Canonical content-addressed packages in `vendor/` supply the shared evidence shell and existing playback controls. The manifest maps five authored scenarios plus the real custom-configuration state; the lesson adapter reuses all ten current chapters. `?scenario=…` applies an allowlisted preset, `?lesson=adaptation-101` opens the guide. The custom route starts from defaults, not a transferred configuration. Unsupported `ils` payloads are ignored. Related links are semantic navigation only. Parameter calculations, memory estimates, user inputs and synthetic learning outputs remain distinct; simulation and scientific content stay application-owned.
+Canonical content-addressed packages in `vendor/` supply the shared evidence shell and existing playback controls. The manifest maps five authored scenarios plus the real custom-configuration state; the lesson adapter reuses all ten current chapters. `?scenario=…` applies an allowlisted preset, `?lesson=adaptation-101` opens the guide. The custom route starts from defaults, not a transferred configuration. Unsupported `ils` payloads are ignored. Related links in the shared shell are navigation only; the separate DCL handoff projects bounded workload metadata. Parameter calculations, memory estimates, user inputs and synthetic learning outputs remain distinct; simulation and scientific content stay application-owned.

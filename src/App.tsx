@@ -366,11 +366,7 @@ function AppContent({
           </span>
         </a>
         <div className="header-right">
-          <a
-            href="https://aserdargun.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={destination.home} target="_blank" rel="noopener noreferrer">
             aserdargun.com
           </a>
           <div className="languages" aria-label={t("Language", "Dil")}>
@@ -388,6 +384,20 @@ function AppContent({
       </header>
       <main id="main" tabIndex={-1}>
         <div className="intro">
+          <nav
+            className="learning-path"
+            aria-label={t("Learning path", "Öğrenme yolu")}
+          >
+            <a href={destination.journey}>
+              {t("AI Learning System", "AI Öğrenme Sistemi")}
+            </a>
+            <span aria-hidden="true">/</span>
+            <a href={destination.usl}>
+              {t("USL · Adaptation foundations", "USL · Uyarlamanın temelleri")}
+            </a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">ADP</span>
+          </nav>
           <h1>
             {t(
               "See how a base model becomes adapted to a task.",
@@ -398,6 +408,12 @@ function AppContent({
             {t(
               "Change what learns. See what it costs. Evaluate what changed.",
               "Öğreneni değiştirin. Kaynak ihtiyacını görün. Değişimi değerlendirin.",
+            )}
+          </p>
+          <p className="intro-boundary">
+            {t(
+              "Browser-only learning lab · calculated parameters, estimated memory, synthetic training and evaluation. No real model is trained.",
+              "Tarayıcıda çalışan öğrenme laboratuvarı · hesaplanan parametreler, tahmini bellek, sentetik eğitim ve değerlendirme. Gerçek model eğitilmez.",
             )}
           </p>
         </div>
@@ -432,14 +448,17 @@ function AppContent({
             aria-expanded={lesson !== null}
           >
             <BookOpen size={15} />
-            Adaptation 101
+            {t("Adaptation 101", "Uyarlama 101")}
             <span className="guide-label">
               {t("Guided lesson", "Rehberli ders")}
             </span>
           </button>
         </div>
         {lesson !== null && (
-          <section className="lesson panel" aria-label="Adaptation 101">
+          <section
+            className="lesson panel"
+            aria-label={t("Adaptation 101", "Uyarlama 101")}
+          >
             <div>
               <span className="lesson-index">{lesson + 1} / 10</span>
               <h2>{lessons[lesson].title[lang]}</h2>
@@ -756,12 +775,17 @@ function AppContent({
           className="semantic-handoff"
           aria-label={t("Continue learning", "Öğrenmeye devam")}
         >
-          <strong>{t("Adapt → Deploy", "Uyarla → Dağıt")}</strong>
+          <strong>
+            {t(
+              "Adaptation → deployment planning",
+              "Uyarlama → dağıtım planlaması",
+            )}
+          </strong>
           <p>
             {deploymentContext(config, scenario)
               ? t(
-                  "Carry the 7B / 14B model class, precision, sequence length and training memory estimate to DCL. DCL will ask you to create a separate inference comparison.",
-                  "7B / 14B model sınıfını, hassasiyeti, dizi uzunluğunu ve eğitim belleği tahminini DCL’ye taşıyın. DCL ayrı bir çıkarım karşılaştırması oluşturmanızı isteyecek.",
+                  "This link carries the 7B / 14B model class, adaptation method, base precision, sequence length and estimated training memory in the URL. DCL asks you to create a separate inference comparison; training memory is not an inference estimate. No weights, datasets or scores are transferred.",
+                  "Bu bağlantı 7B / 14B model sınıfını, uyarlama yöntemini, temel hassasiyetini, dizi uzunluğunu ve tahmini eğitim belleğini URL üzerinden taşır. DCL ayrı bir çıkarım karşılaştırması oluşturmanızı ister; eğitim belleği çıkarım tahmini değildir. Ağırlık, veri kümesi veya skor aktarılmaz.",
                 )
               : t(
                   "This handoff currently supports 7B and 14B profiles. Other sizes open DCL’s default comparison without transferring settings.",
@@ -772,7 +796,10 @@ function AppContent({
             data-testid="adp-to-dcl"
             href={deploymentLink(config, scenario, lang)}
           >
-            {t("Where can this run? → DCL", "Nerede çalışabilir? → DCL")}
+            {t(
+              "Compare deployment options → DCL",
+              "Dağıtım seçeneklerini karşılaştır → DCL",
+            )}
           </a>
         </section>
         <LabShell
@@ -804,8 +831,8 @@ function AppContent({
           <p>
             <Badge kind="verified" />{" "}
             {t(
-              "Primary sources checked 2026-09-10. Sources support concepts, not the simulator’s numbers.",
-              "Birincil kaynaklar 2026-09-10 tarihinde kontrol edildi. Kaynaklar kavramları destekler; simülatör sayılarını değil.",
+              "Primary sources checked 2026-09-21. Sources support concepts, not the simulator’s numbers.",
+              "Birincil kaynaklar 2026-09-21 tarihinde kontrol edildi. Kaynaklar kavramları destekler; simülatör sayılarını değil.",
             )}
           </p>
           <div className="source-links">
@@ -818,7 +845,13 @@ function AppContent({
             <External href="https://huggingface.co/docs/transformers/model_memory_anatomy">
               {t("Hugging Face · GPU memory", "Hugging Face · GPU belleği")}
             </External>
-            <External href="/educational-model.md">
+            <External
+              href={
+                lang === "tr"
+                  ? "/educational-model.tr.md"
+                  : "/educational-model.md"
+              }
+            >
               {t("Full model specification", "Tam model tanımı")}
             </External>
           </div>
@@ -833,13 +866,19 @@ function AppContent({
             </h2>
             <p>
               {t(
-                "USL explains the landscape. ADP turns adaptation choices into inspectable experiments.",
-                "USL yöntemleri ve araştırma alanını açıklar. ADP uyarlama seçimlerini incelenebilir deneylere dönüştürür.",
+                "Start with USL’s adaptation foundations, experiment in ADP, then explore evaluation in EVL, deployment choices in DCL, serving in TFL and execution in GEX. These are connected learning tools; a simulated pass does not deploy a model.",
+                "USL’de uyarlamanın temellerini öğrenin, ADP’de deney yapın; ardından EVL’de değerlendirmeyi, DCL’de dağıtım seçeneklerini, TFL’de model sunumunu ve GEX’te yürütmeyi keşfedin. Bunlar bağlantılı öğrenme araçlarıdır; simülasyonda başarılı olmak bir modeli yayına almaz.",
               )}
             </p>
             <small>GPU → GEX · LLM → TFL · USL → ADP</small>
           </div>
           <div className="ecosystem-links">
+            <External href={destination.applications}>
+              {t(
+                "Explore all applications → aserdargun.com",
+                "Tüm uygulamaları keşfet → aserdargun.com",
+              )}
+            </External>
             <External href={destination.usl}>
               {t("Learn adaptation → USL", "Uyarlamayı öğren → USL")}
             </External>
@@ -850,7 +889,7 @@ function AppContent({
               {t("Evaluate behavior → EVL", "Davranışı değerlendir → EVL")}
             </External>
             <External href={destination.tfl}>
-              {t("Explore serving → TFL", "Sunumu keşfet → TFL")}
+              {t("Explore model serving → TFL", "Model sunumunu keşfet → TFL")}
             </External>
             <External href={destination.gex}>
               {t("Understand execution → GEX", "Yürütmeyi anla → GEX")}
@@ -897,6 +936,14 @@ export default function App() {
       lang === "tr"
         ? "ADP — Model Uyarlama Laboratuvarı"
         : "ADP — Model Adaptation Laboratory";
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        "content",
+        lang === "tr"
+          ? "ADP — Model Uyarlama Laboratuvarı. Full FT, LoRA ve QLoRA yöntemlerini hesaplanan parametreler, tahmini bellek ve sentetik eğitim/değerlendirme ile keşfedin. Gerçek model eğitilmez."
+          : "ADP — Model Adaptation Laboratory. Explore Full FT, LoRA and QLoRA through calculated parameters, estimated memory and synthetic training/evaluation. No real model is trained.",
+      );
     try {
       localStorage.setItem("adp-lang", lang);
     } catch {

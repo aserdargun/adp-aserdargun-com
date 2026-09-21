@@ -79,8 +79,8 @@ export function EvaluationLab({
           <table className="evaluation-table">
             <caption>
               {t(
-                "BASE vs ADAPTED · six independent dimensions",
-                "TEMEL ve UYARLANMIŞ · altı bağımsız boyut",
+                "BASE vs ADAPTED · six evaluation dimensions",
+                "TEMEL ve UYARLANMIŞ · altı değerlendirme boyutu",
               )}
             </caption>
             <thead>

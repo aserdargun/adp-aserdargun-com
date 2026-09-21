@@ -1,2 +1,7 @@
-import { copyFileSync } from 'node:fs';
-copyFileSync(new URL('../docs/educational-model.md',import.meta.url),new URL('../public/educational-model.md',import.meta.url));
+import { copyFileSync } from "node:fs";
+for (const name of ["educational-model.md", "educational-model.tr.md"]) {
+  copyFileSync(
+    new URL(`../docs/${name}`, import.meta.url),
+    new URL(`../public/${name}`, import.meta.url),
+  );
+}

@@ -38,6 +38,7 @@ const assets = Object.fromEntries(
 for (const file of [
   "staticwebapp.config.json",
   "educational-model.md",
+  "educational-model.tr.md",
   "favicon.svg",
   "lab.manifest.json",
 ])

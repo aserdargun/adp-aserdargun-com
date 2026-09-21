@@ -211,8 +211,8 @@
         },
         "url": "https://usl.aserdargun.com/",
         "localizedUrls": {
-          "en": "https://usl.aserdargun.com/?lang=en",
-          "tr": "https://usl.aserdargun.com/?lang=tr"
+          "en": "https://usl.aserdargun.com/en/learn/lora/",
+          "tr": "https://usl.aserdargun.com/tr/learn/lora/"
         }
       },
       {
@@ -223,8 +223,8 @@
         },
         "url": "https://evl.aserdargun.com/",
         "localizedUrls": {
-          "en": "https://evl.aserdargun.com/?lang=en",
-          "tr": "https://evl.aserdargun.com/?lang=tr"
+          "en": "https://evl.aserdargun.com/en/",
+          "tr": "https://evl.aserdargun.com/tr/"
         }
       }
     ],
@@ -261,8 +261,8 @@
         },
         "url": "https://gex.aserdargun.com/",
         "localizedUrls": {
-          "en": "https://gex.aserdargun.com/?lang=en",
-          "tr": "https://gex.aserdargun.com/?lang=tr"
+          "en": "https://gex.aserdargun.com/gex/tensor?lang=en",
+          "tr": "https://gex.aserdargun.com/gex/tensor?lang=tr"
         }
       }
     ]

@@ -2,6 +2,8 @@
 
 ADP is a client-side laboratory, not a trainer. No weights, GPU jobs, real model responses or measured benchmarks are produced. A run export is simulation metadata, never a usable model checkpoint.
 
+[Türkçe model tanımı](educational-model.tr.md)
+
 ## Evidence vocabulary
 
 - **Calculated**: deterministic arithmetic given an educational profile and user inputs.
@@ -19,7 +21,7 @@ Six generic 1/3/7/14/32/70B profiles are rounded parameter budgets with illustra
 
 ## Memory
 
-All numbers use GiB = 2^30 bytes. Base bytes = parameters × representation bits / 8. BF16 and FP16 have the same storage here; FP32 doubles it. QLoRA uses a 4-bit frozen payload plus an illustrative 0.127 bits/parameter metadata budget. Compute and adapters remain at the selected 16/32-bit precision. This is not 4-bit optimizer training.
+All numbers use GiB = 2^30 bytes. Base bytes = parameters × representation bits / 8. BF16 and FP16 have the same storage here; FP32 doubles it. QLoRA uses a 4-bit frozen payload plus an illustrative 0.127 bits/parameter metadata budget. Compute and adapters remain at the selected 16/32-bit precision. This is not 4-bit optimizer training. ADP does not implement NF4 kernels, double quantization or paged optimizers from the QLoRA paper; it illustrates frozen-base and adapter memory accounting.
 
 Gradients: 4 bytes per trainable parameter. Adam moments: 8 bytes per trainable parameter. A separate FP32 master copy adds 4 bytes per trainable parameter in the 16-bit setup, zero extra in the FP32 setup. Frozen parameters have neither gradients, optimizer states nor master copies. Full weights are counted once; adapter weights are a separate component only for adapter methods.
 
@@ -29,7 +31,7 @@ Activation bytes = microBatch × sequence × hidden × layers × computeBytes ×
 
 Datasets contain deterministic fictional examples with mutually exclusive quality categories. 80% train, 10% validation and 10% test. The display is a representative sample bank: prompt templates repeat with distinct case contexts and synthetic record identities; it is not real evaluation data. Duplicate groups are confined to train. Filters operate only on training rows, leaving validation/test banks fixed. Deliberate leakage copies 20% of test identities into train and must fail the gate. Contradiction filtering removes authored contradictory rows; it cannot promise to find all real contradictions.
 
-Weighted task coverage, noise, contradiction, irrelevant examples, missing targets, unique diversity and difficulty remain separate dimensions. Duplicates are repeated exposures to one source group. Cleaning can change size, diversity and coverage. Every sample length is an illustrative 2048 tokens. Actual training token exposure = prepared train count × min(average tokens, sequence cap) × epochs. Increasing cap above average does not magically add information; activation estimate still reserves the configured sequence. No pretrained tokenizer is used. The UI's word chips are conceptual units, not token IDs.
+Weighted task coverage, noise, contradiction, irrelevant examples, missing targets, unique diversity and difficulty remain separate dimensions. Duplicates are repeated exposures to one source group. Cleaning can change size, diversity and coverage. Every sample length is an illustrative 2048 tokens. Calculated training token exposure = prepared train count × min(average tokens, sequence cap) × epochs. Increasing cap above average does not magically add information; activation estimate still reserves the configured sequence. No pretrained tokenizer is used. The UI's word chips are conceptual units, not token IDs.
 
 One epoch traverses the prepared train split. Effective batch = micro batch × accumulation (single device). Remainders produce a partial final batch/update. Accumulation changes update counts without multiplying resident activations.
 
@@ -50,7 +52,7 @@ Leakage adds 12 points to the reported held-out score (capped at 100), with the 
 
 ## Events and compute
 
-Playback compresses an epoch into at most 12 representative groups, each batch → forward → loss → backward → optimizer step. The displayed counts account for every real configured microbatch and update, including partial final accumulation. One synthetic tick is one teaching event, never elapsed GPU time. Loss chart points appear only after an optimizer event; evaluation is hidden until its own event. A configuration change invalidates the active run; saved snapshots retain their original settings, seed, assumptions and version.
+Playback compresses an epoch into at most 12 representative groups, each batch → forward → loss → backward → optimizer step. The displayed counts account for every configured microbatch and update, including partial final accumulation. One synthetic tick is one teaching event, never elapsed GPU time. Loss chart points appear only after an optimizer event; evaluation is hidden until its own event. A configuration change invalidates the active run; saved snapshots retain their original settings, seed, assumptions and version.
 
 Compute index = million training tokens × model/7B × method factor (Full FT 3, LoRA 2, QLoRA 2.3) × checkpoint factor (1.3 or 1). These authored units simply illustrate backward and recomputation burdens. No FLOPs, latency, dollars or measured speed is inferred.
 
@@ -58,10 +60,14 @@ Compute index = million training tokens × model/7B × method factor (Full FT 3,
 
 The scenario requires domain gain ≥8 points, format ≥80, held-out ≥65, retention drop ≤5 and no test leakage. All six baseline and adapted scores must be present, numeric, finite and within 0–100. The integrity result must explicitly indicate no leakage. Each acceptance clause is evaluated independently. A finished training checkpoint does not imply readiness. The result says only that a synthetic educational contract passed. Repeated inspection of these simulated test scores is a lesson; a real project needs a fresh final hold-out after development.
 
-## Primary sources checked 2026-09-10
+## Primary sources checked 2026-09-21
 
 - Hu et al., [LoRA](https://arxiv.org/abs/2106.09685): low-rank trainable updates to frozen pretrained weights.
 - Dettmers et al., [QLoRA](https://arxiv.org/abs/2305.14314): backpropagation through a frozen quantized base into higher-precision adapters.
 - Hugging Face, [GPU memory usage](https://huggingface.co/docs/transformers/model_memory_anatomy): weight copies, gradients, optimizer moments, activations and temporary allocations.
 
 Literature supports the concepts. It does not validate ADP's generic profiles, synthetic scores or activation coefficients.
+
+## Learning-system handoff
+
+ADP is the adaptation laboratory within the [aserdargun.com learning system](https://aserdargun.com/). USL supplies theory; EVL explores evaluation contracts; DCL compares deployment choices; TFL explores serving; GEX explores execution. Ordinary links carry language only. The explicit DCL link carries only the supported 7B/14B model class, adaptation method, base precision, sequence length and estimated training memory plus source/return references in the URL. DCL requires a separate training-to-inference conversion and never treats ADP training memory as inference memory. No weights, dataset records, scores or traces are sent.
