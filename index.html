@@ -25,9 +25,58 @@
       href="/apple-touch-icon.png?v=family-green-1"
     />
     <title>ADP — Model Adaptation Laboratory</title>
+    <link rel="canonical" href="https://adp.aserdargun.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Model Adaptation Laboratory" />
+    <meta property="og:title" content="ADP — Model Adaptation Laboratory" />
+    <meta
+      property="og:description"
+      content="Explore Full FT, LoRA and QLoRA through parameter counts, memory estimates, data preparation and synthetic training/evaluation experiments. USL provides the adaptation foundation; an optional DCL handoff carries educational workload metadata into deployment planning. No real model is trained or deployed."
+    />
+    <meta property="og:url" content="https://adp.aserdargun.com/" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ADP — Model Adaptation Laboratory" />
+    <meta
+      name="twitter:description"
+      content="Explore Full FT, LoRA and QLoRA through parameter counts, memory estimates, data preparation and synthetic training/evaluation experiments. USL provides the adaptation foundation; an optional DCL handoff carries educational workload metadata into deployment planning. No real model is trained or deployed."
+    />
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>ADP — Model Adaptation Laboratory</h1>
+        <p>
+          An interactive, deterministic comparison of Full fine-tuning, LoRA and
+          QLoRA. Change the method, the data and the memory budget, and watch
+          parameter counts, estimated memory and synthetic training and
+          evaluation results change with them. Everything runs in your browser
+          as a teaching model.
+        </p>
+        <p>
+          <strong>Scope:</strong> no real model is trained or deployed.
+          Parameter counts are calculated, memory is estimated and learning
+          results are synthetic. Source verification does not verify simulator
+          numbers.
+        </p>
+        <h2>What it covers</h2>
+        <ul>
+          <li>
+            Parameter counts and estimated training memory for Full FT, LoRA and
+            QLoRA.
+          </li>
+          <li>
+            Five authored experiments: domain QA, data quality, overfitting,
+            memory constraint and a rank explorer, plus a custom experiment.
+          </li>
+          <li>
+            Adaptation 101, the concepts behind the method choices, and the
+            assumptions behind every number.
+          </li>
+        </ul>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
