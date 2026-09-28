@@ -25,10 +25,11 @@ Open http://127.0.0.1:5301. Strict project-specific port; no foreign listener is
 npm run lint
 npm test
 npm run build
+npm run test:e2e
 npm run format:check
 ```
 
-`npm run validate` runs type checking, all unit tests and the production build. `dist/` contains the static app, bundled fonts, model specification and Azure routing/security headers. No runtime API, credentials, external fonts, GPU or backend is required.
+`npm run validate` runs type checking, all unit tests, the production build and the Playwright browser suite in `e2e/`, which covers manifest scenario routes, the guided lesson route, locale switching, keyboard operation of the simulation and mode controls, the evidence-kind policy and responsive layout. `dist/` contains the static app, bundled fonts, model specification and Azure routing/security headers. No runtime API, credentials, external fonts, GPU or backend is required.
 
 ## Experience
 

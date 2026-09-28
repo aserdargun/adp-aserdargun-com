@@ -11,8 +11,9 @@
     "preview": "vite preview --host 127.0.0.1 --port 4301 --strictPort",
     "lint": "tsc --noEmit",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "build": "tsc --noEmit && vite build && node scripts/release.mjs && node scripts/release.mjs --verify",
-    "validate": "npm run lint && npm test && npm run build",
+    "validate": "npm run lint && npm test && npm run build && npm run test:e2e",
     "format": "prettier --write src tests *.ts *.json *.html docs/*.md",
     "format:check": "prettier --check src tests *.ts *.json *.html docs/*.md",
     "predev": "node scripts/sync-docs.mjs",
@@ -29,6 +30,7 @@
     "@aserdargun/lab-ui": "file:vendor/aserdargun-lab-ui-0.2.0-5a573640012a6472.tgz"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@types/node": "22.20.1",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
