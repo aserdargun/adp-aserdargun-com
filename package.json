@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5301 --strictPort",
     "preview": "vite preview --host 127.0.0.1 --port 4301 --strictPort",
-    "lint": "tsc --noEmit",
+    "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "build": "tsc --noEmit && vite build && node scripts/release.mjs && node scripts/release.mjs --verify",
@@ -21,22 +21,26 @@
     "verify:artifact": "node scripts/release.mjs --verify"
   },
   "dependencies": {
+    "@aserdargun/lab-core": "file:vendor/aserdargun-lab-core-0.2.0-fb38c750c230ff3d.tgz",
+    "@aserdargun/lab-ui": "file:vendor/aserdargun-lab-ui-0.2.0-5a573640012a6472.tgz",
     "@fontsource/geist": "5.3.0",
     "@fontsource/ibm-plex-mono": "5.3.0",
     "lucide-react": "0.468.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "@aserdargun/lab-core": "file:vendor/aserdargun-lab-core-0.2.0-fb38c750c230ff3d.tgz",
-    "@aserdargun/lab-ui": "file:vendor/aserdargun-lab-ui-0.2.0-5a573640012a6472.tgz"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.63.0",
     "@types/node": "22.20.1",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
     "@vitejs/plugin-react": "6.1.1",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
     "prettier": "^3.8.1",
     "typescript": "5.9.3",
+    "typescript-eslint": "^8.71.0",
     "vite": "8.2.2",
     "vitest": "4.1.11"
   }

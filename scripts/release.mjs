@@ -21,7 +21,7 @@ const sha =
   })();
 if (!process.argv.includes("--verify")) copyFileSync(join(root,"lab.manifest.json"), join(dist,"lab.manifest.json"));
 const html = readFileSync(join(dist, "index.html"), "utf8");
-const paths = [...html.matchAll(/(?:src|href)="(\/assets\/[^\"]+)"/g)].map(
+const paths = [...html.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)].map(
   (m) => m[1],
 );
 if (
