@@ -908,6 +908,12 @@ function AppContent({
             "Eğitim simülasyonu. Gerçek model eğitilmez.",
           )}
         </span>
+        <span>
+          {t(
+            "Content reviewed 2026-09-21. Primary sources checked 2026-09-21; they support concepts, not the simulator’s numbers.",
+            "İçerik 2026-09-21 tarihinde incelendi. Birincil kaynaklar 2026-09-21 tarihinde kontrol edildi; kavramları desteklerler, simülatör sayılarını değil.",
+          )}
+        </span>
       </footer>
     </>
   );
