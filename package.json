@@ -14,8 +14,8 @@
     "test:e2e": "playwright test",
     "build": "tsc --noEmit && vite build && node scripts/release.mjs && node scripts/release.mjs --verify",
     "validate": "npm run lint && npm test && npm run build && npm run test:e2e",
-    "format": "prettier --write src tests *.ts *.json *.html docs/*.md",
-    "format:check": "prettier --check src tests *.ts *.json *.html docs/*.md",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "predev": "node scripts/sync-docs.mjs",
     "prebuild": "node scripts/sync-docs.mjs",
     "verify:artifact": "node scripts/release.mjs --verify"
