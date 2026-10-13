@@ -176,3 +176,110 @@ test("desktop and mobile viewports render without horizontal overflow", async ({
     ).toBe(size.width);
   }
 });
+
+/* README.md:42 promises "up to three immutable session snapshots, preserved on
+   reload; full reproducible JSON export", and README.md:46 lists the five
+   decision dimensions the comparison includes. CompareLab is the lab's actual
+   product - it is titled "Compare decisions, not just scores" - yet the whole
+   save -> compare -> export journey had no coverage at all: grepping e2e/ for
+   compare|save|export returned nothing, and no unit test reaches App.tsx.
+
+   The cap matters most because it is written twice, differently: App.tsx:216
+   refuses with `runs.length === 3` while core/session.ts:31 drops the overflow
+   with `runs.length >= 3`, and only the codec copy was tested (against the codec
+   directly, so it masked the divergence). Raising the UI copy to >= 5 would let
+   a fourth run be saved and shown, then silently dropped on the next reload. */
+async function evaluateAndSave(page: Page) {
+  await page.getByRole("button", { name: "Complete training" }).click();
+  await page.getByRole("button", { name: "Evaluate checkpoint" }).click();
+  // EvaluationLab also carries "Save run for comparison", so the exact name is
+  // what selects the toolbar control.
+  await page.getByRole("button", { name: "Save run", exact: true }).click();
+}
+
+test("a saved run becomes a durable compare entry with a reproducible export", async ({
+  page,
+}) => {
+  await page.goto(experiment("domain").route);
+
+  // Empty state before anything is saved.
+  await page.locator('nav.tabs button:has-text("Compare")').click();
+  await expect(
+    page.getByRole("heading", { name: "Your experiment notebook is empty" }),
+  ).toBeVisible();
+
+  await evaluateAndSave(page);
+  await expect(page.locator("p.notice[role=status]")).toContainText(
+    "ADP-RUN-001 saved",
+  );
+  await expect(
+    page.getByRole("heading", { name: "Compare decisions, not just scores" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("columnheader", { name: /ADP-RUN-001/ }),
+  ).toBeVisible();
+
+  // The five decision dimensions README.md:46 claims the comparison includes.
+  for (const row of [
+    "Learning rate",
+    "Data preparation",
+    "Train / test integrity",
+    "Device / memory fit",
+    "Gradient checkpointing",
+  ])
+    await expect(page.getByRole("rowheader", { name: row })).toBeVisible();
+
+  // Export contract, read from the accessible fallback the UI provides rather
+  // than from a download event.
+  await page.getByRole("button", { name: "Export reproducible JSON" }).click();
+  const exported = JSON.parse(
+    await page.getByLabel("Reproducible experiment JSON").inputValue(),
+  );
+  expect(exported.kind).toBe("ADP synthetic educational experiments");
+  expect(exported.version).toBe("adp-core-1");
+  expect(exported.runs).toHaveLength(1);
+  expect(exported.runs[0].id).toBe("ADP-RUN-001");
+
+  // "preserved on reload": the snapshot survives a real browser reload.
+  await page.reload();
+  await expect(
+    page.getByRole("columnheader", { name: /ADP-RUN-001/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("rowheader", { name: "Learning rate" }),
+  ).toBeVisible();
+});
+
+test("the notebook refuses a fourth snapshot, so the UI cap and the codec agree", async ({
+  page,
+}) => {
+  await page.goto(experiment("domain").route);
+  await evaluateAndSave(page); // ADP-RUN-001
+  for (const id of ["quality", "overfit", "memory"]) {
+    await page.getByLabel("Experiment scenario").selectOption(id);
+    await evaluateAndSave(page);
+  }
+  await expect(
+    page.locator('nav.tabs button:has-text("Compare")'),
+  ).toContainText("3");
+  await expect(
+    page.getByRole("columnheader", { name: /ADP-RUN-003/ }),
+  ).toBeVisible();
+
+  // A fourth save is refused in the UI and never reaches storage.
+  await page.getByLabel("Experiment scenario").selectOption("rank");
+  await evaluateAndSave(page);
+  await expect(page.locator("p.notice[role=status]")).toContainText(
+    "Three runs saved. Remove one to save another.",
+  );
+  await expect(
+    page.getByRole("columnheader", { name: /ADP-RUN-004/ }),
+  ).toHaveCount(0);
+  await page.reload();
+  await expect(
+    page.getByRole("columnheader", { name: /ADP-RUN-003/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("columnheader", { name: /ADP-RUN-004/ }),
+  ).toHaveCount(0);
+});
