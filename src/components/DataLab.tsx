@@ -10,13 +10,18 @@ import {
   fmt,
   useT,
 } from "./ui";
-const flags: Record<QualityFlag, [string, string]> = {
+export const flags: Record<QualityFlag, [string, string]> = {
   good: ["Good", "İyi"],
   duplicate: ["Duplicate", "Tekrar"],
   noisy: ["Noisy", "Gürültülü"],
   contradictory: ["Contradictory", "Çelişkili"],
   "out-of-domain": ["Out of domain", "Alan dışı"],
   "missing-target": ["Missing target", "Hedef eksik"],
+};
+export const splitNames: Record<Sample["split"], [string, string]> = {
+  train: ["train", "eğitim"],
+  validation: ["validation", "doğrulama"],
+  test: ["test", "test"],
 };
 export function DataLab({
   config: c,
@@ -26,12 +31,7 @@ export function DataLab({
   change: (patch: Partial<AdaptationConfig>) => void;
 }) {
   const splitName = (split: Sample["split"]) => {
-    const names = {
-      train: ["train", "eğitim"],
-      validation: ["validation", "doğrulama"],
-      test: ["test", "test"],
-    } as const;
-    return t(names[split][0], names[split][1]);
+    return t(splitNames[split][0], splitNames[split][1]);
   };
   const t = useT(),
     lang = useContext(LocaleContext),
