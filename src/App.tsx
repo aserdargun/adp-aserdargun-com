@@ -30,6 +30,11 @@ import type {
 import { defaultConfig, getModel } from "./core/models";
 import { parameters } from "./core/parameters";
 import { memory } from "./core/memory";
+import {
+  primarySources,
+  sourcesCheckedAt,
+  specReviewedAt,
+} from "./core/verification";
 import { restoreRuns, serializeRuns, runsStorageKey } from "./core/session";
 import { createRun, replay } from "./simulation/engine";
 import { lessons, scenarios } from "./lessons/lessons";
@@ -831,20 +836,16 @@ function AppContent({
           <p>
             <Badge kind="verified" />{" "}
             {t(
-              "Primary sources checked 2026-09-21. Sources support concepts, not the simulator’s numbers.",
-              "Birincil kaynaklar 2026-09-21 tarihinde kontrol edildi. Kaynaklar kavramları destekler; simülatör sayılarını değil.",
+              `Primary sources checked ${sourcesCheckedAt}. Sources support concepts, not the simulator’s numbers.`,
+              `Birincil kaynaklar ${sourcesCheckedAt} tarihinde kontrol edildi. Kaynaklar kavramları destekler; simülatör sayılarını değil.`,
             )}
           </p>
           <div className="source-links">
-            <External href="https://arxiv.org/abs/2106.09685">
-              LoRA · Hu et al.
-            </External>
-            <External href="https://arxiv.org/abs/2305.14314">
-              QLoRA · Dettmers et al.
-            </External>
-            <External href="https://huggingface.co/docs/transformers/model_memory_anatomy">
-              {t("Hugging Face · GPU memory", "Hugging Face · GPU belleği")}
-            </External>
+            {primarySources.map((source) => (
+              <External key={source.id} href={source.url}>
+                {lang === "tr" ? source.label.tr : source.label.en}
+              </External>
+            ))}
             <External
               href={
                 lang === "tr"
@@ -910,8 +911,8 @@ function AppContent({
         </span>
         <span>
           {t(
-            "Content reviewed 2026-09-21. Primary sources checked 2026-09-21; they support concepts, not the simulator’s numbers.",
-            "İçerik 2026-09-21 tarihinde incelendi. Birincil kaynaklar 2026-09-21 tarihinde kontrol edildi; kavramları desteklerler, simülatör sayılarını değil.",
+            `Content reviewed ${specReviewedAt}. Primary sources checked ${sourcesCheckedAt}; they support concepts, not the simulator’s numbers.`,
+            `İçerik ${specReviewedAt} tarihinde incelendi. Birincil kaynaklar ${sourcesCheckedAt} tarihinde kontrol edildi; kavramları desteklerler, simülatör sayılarını değil.`,
           )}
         </span>
       </footer>

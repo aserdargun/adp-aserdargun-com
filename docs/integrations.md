@@ -20,6 +20,6 @@ DCL requires an explicit training-to-inference comparison. It does not reuse tra
 
 ## Source and verification scope
 
-Reviewed against current local app routes and the root catalog on 2026-09-21. HTTPS requests returned 200 for the root EN/TR pages, ADP, USL EN/TR LoRA routes, EVL EN/TR routes, DCL, TFL and the GEX tensor route. HTTP availability alone does not prove client-side locale selection or end-to-end handoff behavior. The older 2026-09-09 DCL DNS caveat is historical; it is not the current result of this check.
+Reviewed against current local app routes and the root catalog on 2026-10-27. HTTPS requests returned 200 for the root EN/TR pages, ADP, USL EN/TR LoRA routes, EVL EN/TR routes, DCL, TFL and the GEX tensor route. The same check confirmed which parameter each target actually resolves rather than assuming one: GEX, DCL and TFL read `?lang=`, while EVL and USL resolve the `/en/` and `/tr/` path prefix, so the locale carried by these links is the one those applications answer to. HTTP availability alone does not prove end-to-end handoff behavior. The older 2026-09-09 DCL DNS caveat is historical; it is not the current result of this check.
 
 This content review does not assert a new production release. Publication requires the independent workflow, release-manifest and live-browser checks in [deployment.md](deployment.md).

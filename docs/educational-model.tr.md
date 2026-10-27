@@ -70,7 +70,7 @@ Alan kazancı ≥8 puan, biçim ≥80, ayrılmış veri ≥65, yetenek kaybı �
 
 [aserdargun.com](https://aserdargun.com/tr/) içindeki USL kuramsal temeli, ADP uyarlama deneylerini, EVL değerlendirme sözleşmesini, DCL dağıtım seçimini, TFL model sunumunu, GEX yürütmeyi ele alır. Olağan bağlantılar yalnız dili taşır. Açık DCL aktarımı 7B/14B profillerinde model sınıfını, yöntemi, temel hassasiyetini, dizi uzunluğunu, tahmini eğitim belleğini ve kaynak/dönüş referanslarını URL’ye koyar. DCL ayrı çıkarım karşılaştırması ister; eğitim belleğini çıkarım belleği saymaz. Ağırlık, veri kaydı, skor veya olay izi taşınmaz.
 
-## Birincil kaynaklar — kontrol: 2026-09-21
+## Birincil kaynaklar — kontrol: 2026-10-27
 
 - Hu ve diğerleri, [LoRA](https://arxiv.org/abs/2106.09685): donmuş temel ağırlıklara düşük ranklı eğitilebilir güncellemeler.
 - Dettmers ve diğerleri, [QLoRA](https://arxiv.org/abs/2305.14314): donmuş kuantize temel üzerinden adaptörlere geri yayılım.

@@ -1,6 +1,7 @@
 import { expect, it } from "vitest";
 import { datasets, domains, qualityFlags } from "../src/core/datasets";
 import { models } from "../src/core/models";
+import { primarySources } from "../src/core/verification";
 import { lessons } from "../src/lessons/lessons";
 import { manifest } from "../src/ils/catalog";
 import concepts from "../src/ils/concepts.json";
@@ -61,6 +62,7 @@ const authored: Pair[] = [
   ...collect(manifest, "$.manifest"),
   ...collect(concepts, "$.concepts"),
   ...collect(experiments, "$.experiments"),
+  ...collect(primarySources, "$.primarySources"),
 ];
 
 it("collects the authored bilingual surface and every locale pair", () => {

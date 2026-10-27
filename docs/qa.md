@@ -1,5 +1,15 @@
 # CORE verification — 2026-09-09
 
+## Verification record — 2026-10-27
+
+A re-verification of the dated claims this document carries, not a second acceptance run. The three checks below produced the dates now published in the interface, in the model specification and in the integration record.
+
+- **Primary sources.** All three were opened again. The LoRA abstract still freezes the pre-trained weights and injects trainable rank-decomposition matrices. The QLoRA abstract still backpropagates through a frozen 4-bit quantized base into LoRA adapters. The Hugging Face memory page still documents the fp16/fp32 weight copies, the gradients, the activations that scale with batch size, sequence length and depth, and the temporary allocations.
+- **Model specification.** The English and Turkish specifications were re-read against `src/core/evaluation.ts`, `src/core/memory.ts`, `src/core/datasets.ts`, `src/core/parameters.ts`, `src/core/models.ts` and `src/simulation/engine.ts`. Every published formula, coefficient, split ratio and contract threshold still matches the code.
+- **Integration routes.** Every target in `src/integrations/links.ts` returned HTTP 200, and each application's own source was read to confirm which locale parameter it resolves: `?lang=` in GEX, DCL and TFL, the `/en/` and `/tr/` path prefix in EVL and USL.
+
+The dates these checks produce are published from `src/core/verification.ts` and bound to every copy that shows them by `tests/verification.test.ts`. They are no longer written out by hand in each place that displays them. The 2026-09-09 acceptance record below is unchanged and still describes that build.
+
 ## Automated checks
 
 `npm run validate` passed: TypeScript strict checking, **36 unit tests across two files**, and Vite production build. `npm run format:check` passed. Static artifact is `dist/`; entry JS is approximately 283 kB (92 kB gzip), CSS 37 kB (8 kB gzip), with self-hosted Latin/Latin-ext fonts.
